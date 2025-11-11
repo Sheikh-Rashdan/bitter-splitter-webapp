@@ -13,15 +13,89 @@ body {
   overflow: hidden;
 }
 
+body::selection {
+  background-color: #222222;
+}
+
+i {
+  transition: 300ms ease;
+}
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: black;
+  border: 4px solid white;
+  border-radius: 30px 30px 15px 15px;
+  font-size: 1rem;
+  padding: 0.2rem;
+  transition: 300ms ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 0.8rem;
+  gap: 0.6rem;
+}
+
+button:hover i {
+  color: black;
+}
+
 .title-label {
   font-size: 3.5rem;
   text-align: center;
-  margin: 3rem 0px 1rem;
+  margin: 2rem 0 0;
+}
+
+.body-text {
+  font-size: 2.5rem;
+}
+
+.create-group-button {
+  width: 100%;
+  font-size: 2rem;
 }
 
 .divider-container {
   border: 2px solid white;
   border-radius: 20px;
-  padding: 3px 0px;
-  margin: 0px 2rem;
+  padding: 3px 0;
+  margin: 1rem 2rem;
+}
+
+.group-select-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 2rem 2rem;
+  gap: 1rem;
+}
+
+.group-card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.group-card {
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 20px;
+  font-size: 1.4rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  padding: 1rem;
 }
