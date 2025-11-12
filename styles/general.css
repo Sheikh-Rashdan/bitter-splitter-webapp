@@ -75,7 +75,7 @@ button:hover i {
   margin: 1rem 2rem;
 }
 
-.group-select-container {
+.column-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,7 +113,7 @@ button:hover i {
 }
 
 .group-card:hover {
-  background-color: #222222;
+  background-color: rgba(from white r g b / 0.05);
   font-weight: 600;
   transform: scaleY(1.1);
 }
