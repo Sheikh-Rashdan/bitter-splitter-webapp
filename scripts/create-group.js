@@ -1,16 +1,10 @@
 import { addGroup } from '../scripts/groups.js';
 
-let groupName = '';
+// data
 let numberOfPeople = 2;
 let memberNames = [];
 
-const groupNameInputElement = document.querySelector('.js-group-name-input');
-const groupSpinboxNumberElement = document.querySelector('.js-group-spinbox-number');
-const groupSpinboxDecrementtButtonElement = document.querySelector('.js-group-spinbox-decrement')
-const groupSpinboxIncrementButtonElement = document.querySelector('.js-group-spinbox-increment')
-const memberInputContainerElement = document.querySelector('.js-member-input-container');
-const submitCreateGroupButtonElement = document.querySelector('.js-submit-create-group-button');
-
+// functions
 function updateGroupSpinbox() {
     numberOfPeople = Math.min(Math.max(2, numberOfPeople), 10);
     groupSpinboxNumberElement.innerHTML = numberOfPeople;
@@ -26,10 +20,32 @@ function generateMemberInputHTML() {
     const memberNameInputElementList = document.querySelectorAll('.js-member-name-input')
     memberNameInputElementList.forEach((element) => {
         element.addEventListener('input', () => {
+            element.classList.remove('failure-border');
             memberNames[Number(element.dataset.memberNumber)] = element.value.trim();
         });
     });
 }
+
+function checkMemberNameInputs(selectedMemberNames) {
+    for (let i = 0; i < numberOfPeople; i++) {
+        if (!selectedMemberNames[i])
+            return i;
+    }
+    return null;
+}
+
+// DOM elements
+const groupNameInputElement = document.querySelector('.js-group-name-input');
+const groupSpinboxNumberElement = document.querySelector('.js-group-spinbox-number');
+const groupSpinboxDecrementtButtonElement = document.querySelector('.js-group-spinbox-decrement')
+const groupSpinboxIncrementButtonElement = document.querySelector('.js-group-spinbox-increment')
+const memberInputContainerElement = document.querySelector('.js-member-input-container');
+const submitCreateGroupButtonElement = document.querySelector('.js-submit-create-group-button');
+
+// event listeners
+groupNameInputElement.addEventListener('input', () => {
+    groupNameInputElement.classList.remove('failure-border');
+});
 
 groupSpinboxDecrementtButtonElement.addEventListener('click', () => {
     numberOfPeople--;
@@ -44,15 +60,29 @@ groupSpinboxIncrementButtonElement.addEventListener('click', () => {
 });
 
 submitCreateGroupButtonElement.addEventListener('click', () => {
-    let selectedMemberNames = memberNames.slice(0, numberOfPeople);
-    if (groupNameInputElement.value && selectedMemberNames.length === numberOfPeople && !selectedMemberNames.includes('')) {
-        addGroup(groupNameInputElement.value, selectedMemberNames);
-        setInterval(() => {
-            location.href = '../index.html';
-        }, 300);
-    } else {
-        alert('temp -> failure');
+    if (!groupNameInputElement.value) {
+        groupNameInputElement.classList.add('failure-border');
+        groupNameInputElement.focus();
+        return;
     }
+    let selectedMemberNames = memberNames.slice(0, numberOfPeople);
+    let failureInputIndex = checkMemberNameInputs(selectedMemberNames);
+
+    if (failureInputIndex !== null) {
+        document.querySelectorAll('.js-member-name-input').forEach((element) => {
+            if (element.dataset.memberNumber == failureInputIndex) {
+                element.classList.add('failure-border');
+                element.focus();
+            }
+        });
+        return;
+    }
+
+    addGroup(groupNameInputElement.value, selectedMemberNames);
+    setInterval(() => {
+        location.href = '../index.html';
+    }, 300);
 });
 
+// generate HTML
 generateMemberInputHTML();

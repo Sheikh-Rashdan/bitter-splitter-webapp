@@ -1,6 +1,8 @@
+// data
 const GROUPS_KEY = 'GroupsKey';
 export let groups = loadGroups();
 
+// functions
 export function addGroup(name, members) {
     groups.push({ name, members, bills: [] });
     saveGroups();

@@ -22,6 +22,12 @@
   margin: 0 -0.5rem 0 -1rem;
 }
 
+/* failure */
+input.failure-border {
+  border-color: rgb(153, 0, 0);
+  box-shadow: 0 0 10px rgba(from red r g b / 0.5);
+}
+
 /* div */
 .column-container {
   max-height: 58vh;

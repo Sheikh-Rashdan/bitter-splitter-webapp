@@ -1,5 +1,6 @@
 import { groups } from './groups.js';
 
+// functions
 function generateGroupHTML() {
     let generatedHTML = ''
     groups.forEach((group) => {
@@ -19,13 +20,16 @@ function generateGroupHTML() {
     });
 }
 
+// DOM elements
 const createGroupButtonElement = document.querySelector('.js-create-group-button');
 const groupCardContainerElement = document.querySelector('.js-group-card-container');
 
-generateGroupHTML();
-
+// event listeners
 createGroupButtonElement.addEventListener('click', () => {
     setInterval(() => {
         location.href = 'pages/create-group.html'
     }, 300);
 });
+
+// generate HTML
+generateGroupHTML();
