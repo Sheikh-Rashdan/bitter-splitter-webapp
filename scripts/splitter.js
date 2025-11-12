@@ -4,12 +4,19 @@ function generateGroupHTML() {
     let generatedHTML = ''
     groups.forEach((group) => {
         generatedHTML += `
-            <div class="group-card">
-                ${group.name}
+            <div class="group-card js-group-card" data-group-name="${group.name}">
+                ${group.name} (${group.members.length})
             </div>
         `
     });
     groupCardContainerElement.innerHTML = generatedHTML;
+
+    const groupCardElementsList = document.querySelectorAll('.js-group-card');
+    groupCardElementsList.forEach((element) => {
+        element.addEventListener('click', () => {
+            alert(element.dataset.groupName);
+        });
+    });
 }
 
 const createGroupButtonElement = document.querySelector('.js-create-group-button');
@@ -18,5 +25,7 @@ const groupCardContainerElement = document.querySelector('.js-group-card-contain
 generateGroupHTML();
 
 createGroupButtonElement.addEventListener('click', () => {
-    location.href = 'pages/create-group.html'
+    setInterval(() => {
+        location.href = 'pages/create-group.html'
+    }, 300);
 });

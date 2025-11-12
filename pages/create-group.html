@@ -5,9 +5,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Title -->
-  <title>Splitter</title>
+  <title>BitterSplitter</title>
   <!-- Styles -->
   <link rel="stylesheet" href="../styles/general.css">
+  <link rel="stylesheet" href="../styles/create-group.css">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,12 +19,26 @@
 </head>
 
 <body>
-  <p class="title-label">SplitterBitter</p>
+  <p class="title-label">BitterSplitter</p>
   <div class="divider-container"></div>
   <div class="column-container">
-    <p class="body-text">Create a Group</p>
+    <p class="body-text">Create Group</p>
+    <input type="text" placeholder="Group Name" class="group-name-input js-group-name-input">
+    <div class="spinbox-container">
+      <button><i class='bx bxs-minus-circle js-group-spinbox-decrement'></i></button>
+      <span class="js-group-spinbox-number">2</span> <i class='bx  bxs-man fix-icon-padding'></i>
+      <button><i class='bx bxs-plus-circle js-group-spinbox-increment'></i></button>
+    </div>
+    <div class="member-input-container js-member-input-container">
+      <input type="text" placeholder="Member Name 1" class="member-name-input" data-member-number="1">
+      <input type="text" placeholder="Member Name 2" class="member-name-input" data-member-number="2">
+    </div>
+    <button class="submit-create-group-button js-submit-create-group-button">
+      Submit
+      <i class='bx bxs-send'></i>
+    </button>
   </div>
-  <script src="scripts/create-group.js" type="module"></script>
+  <script src="../scripts/create-group.js" type="module"></script>
 </body>
 
 </html>
