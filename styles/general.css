@@ -11,6 +11,7 @@
 }
 
 body {
+  background-color: #111111;
   background-image: linear-gradient(to top, #111111, #000000);
   background-attachment: fixed;
   background-size: cover;
@@ -104,6 +105,10 @@ input.failure-border {
 
 
 /* div */
+div {
+  user-select: none;
+}
+
 .divider-container {
   border: 2px solid white;
   border-radius: 20px;

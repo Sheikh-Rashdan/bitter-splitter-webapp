@@ -28,14 +28,23 @@ function generateMemberHTML() {
     document.querySelectorAll('.js-member-card').forEach((element) => {
         element.addEventListener('click', () => {
             toggleIncludeMember(element.dataset.memberName);
-            generateMemberHTML();
+            updateMemberCards();
         });
+    });
+    updateMemberCards();
+}
+
+function updateMemberCards() {
+    document.querySelectorAll('.js-member-card').forEach((element) => {
         if (currentItem.splitBy.includes(element.dataset.memberName)) {
             element.classList.add('member-card-selected');
+        } else {
+            element.classList.remove('member-card-selected');
         }
     });
 }
 
+let billItemCardLongPressTimeout;
 function generateBillItemHTML() {
     let generatedHTML = '';
     if (bill.length === 0) {
@@ -43,14 +52,31 @@ function generateBillItemHTML() {
     } else {
         bill.forEach((billItem) => {
             generatedHTML += `
-            <div class="bill-item-card">
+            <div class="bill-item-card js-bill-item-card" data-item-name="${billItem.name}">
                 <p>${billItem.name}</p>
                 <p>₹ ${billItem.cost}</p>
             </div>
         `;
         });
+        generatedHTML += 'Long Press to Delete';
     }
     billItemCardContainerElement.innerHTML = generatedHTML;
+
+    document.querySelectorAll('.js-bill-item-card').forEach((element) => {
+        element.addEventListener('pointerdown', () => {
+            clearTimeout(billItemCardLongPressTimeout);
+            billItemCardLongPressTimeout = setTimeout(() => {
+                bill.splice(bill.indexOf(element.dataset.itemName), 1);
+                element.classList.add('bill-item-card-deleting');
+                setTimeout(() => {
+                    generateBillItemHTML();
+                }, 300);
+            }, 500);
+        });
+        element.addEventListener('pointerup', () => {
+            clearTimeout(billItemCardLongPressTimeout);
+        })
+    });
 }
 
 // DOM elements
@@ -83,10 +109,9 @@ submitAddItemButtonElement.addEventListener('click', () => {
     }
     currentItem.name = itemNameInputElement.value !== '' ? itemNameInputElement.value : `Item ${bill.length + 1}`;
     currentItem.cost = Number(itemCostInputElement.value);
-    bill.push(JSON.parse(JSON.stringify(currentItem)));
+    bill.push(structuredClone(currentItem));
 
     itemNameInputElement.value = '';
     itemCostInputElement.value = '';
-    console.log(bill);
     generateBillItemHTML();
 });

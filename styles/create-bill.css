@@ -51,3 +51,17 @@
   transition: 300ms ease;
   cursor: pointer;
 }
+
+.bill-item-card:last-of-type {
+  animation: scaleUp 300ms ease;
+}
+
+@keyframes scaleUp {
+  0% {
+    scale: 0;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
