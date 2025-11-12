@@ -23,8 +23,7 @@ body::selection {
   background-color: rgba(from #ffffff r g b / 0.1);
 }
 
-button,
-a {
+* {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -37,7 +36,7 @@ i {
   font-size: 3.5rem;
   text-align: center;
   margin: 2rem 0 0;
-  text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .body-text {
@@ -82,7 +81,7 @@ input[type='text'] {
   background-color: transparent;
   border: 2px solid white;
   border-radius: 20px;
-  padding: 16px 20px;
+  padding: 1rem 1.25rem;
 }
 
 input[type='text']:focus {

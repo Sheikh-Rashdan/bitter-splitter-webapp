@@ -1,4 +1,4 @@
-import { addGroup } from '../scripts/groups.js';
+import { addGroup, getGroupbyName } from '../scripts/groups.js';
 
 // data
 let numberOfPeople = 2;
@@ -75,6 +75,11 @@ submitCreateGroupButtonElement.addEventListener('click', () => {
                 element.focus();
             }
         });
+        return;
+    }
+
+    if (getGroupbyName(groupNameInputElement.value)) {
+        alert('Group Name Already Exists!');
         return;
     }
 

@@ -1,0 +1,30 @@
+/* button */
+.new-bill-button {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+/* div */
+.member-cards-outer-container {
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+
+.member-cards-inner-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  overflow-x: scroll;
+  gap: 0.5rem;
+  mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+}
+
+.member-card {
+  border-right: 2px solid white;
+  border-left: 2px solid white;
+  padding: 0 1rem 0;
+  font-weight: 600;
+}

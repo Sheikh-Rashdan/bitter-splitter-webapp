@@ -1,4 +1,4 @@
-import { groups } from './groups.js';
+import { groups, getGroupbyName } from './groups.js';
 
 // functions
 function generateGroupHTML() {
@@ -15,7 +15,9 @@ function generateGroupHTML() {
     const groupCardElementsList = document.querySelectorAll('.js-group-card');
     groupCardElementsList.forEach((element) => {
         element.addEventListener('click', () => {
-            alert(element.dataset.groupName);
+            setInterval(() => {
+                location.href = `pages/view-group.html?groupName=${element.dataset.groupName}`;
+            }, 300);
         });
     });
 }
