@@ -8,7 +8,7 @@
   <title>BitterSplitter</title>
   <!-- Styles -->
   <link rel="stylesheet" href="../styles/general.css">
-  <link rel="stylesheet" href="../styles/view-group.css">
+  <link rel="stylesheet" href="../styles/create-bill.css">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,20 +22,27 @@
   <p class="title-label">BitterSplitter</p>
   <div class="divider-container"></div>
   <div class="column-container">
-    <p class="body-title js-group-name">Group Name</p>
-    <div class="member-cards-outer-container">
-      <div class="member-cards-inner-container js-member-cards-inner-container">
-      </div>
+    <p class="body-title">Add Item</p>
+    <input type="text" placeholder="Item Name" class="js-item-name-input">
+    <input type="number" placeholder="Item Cost" class="js-item-cost-input">
+    <div class="member-card-container js-member-card-container">
     </div>
-    <button class="js-new-bill-button">
-      New Bill <i class='bx  bxs-book-content'></i>
+    <button class="js-submit-add-item-button">
+      Add
+      <i class='bx  bxs-plus-circle'></i>
     </button>
   </div>
   <div class="column-container">
-    <p class="body-title">Previous Bills</p>
-    <div class="bill-cards-container js-bill-cards-container"></div>
+    <p class="body-title js-group-name">Group Name</p>
+    <p class="body-subtitle">Bill</p>
+    <div class="bill-item-card-container js-bill-item-card-container">
+    </div>
+    <button class="js-submit-split-bill-button">
+      Split
+      <i class='bx  bxs-currency-notes'></i>
+    </button>
   </div>
-  <script src="../scripts/view-group.js" type="module"></script>
+  <script src="../scripts/create-bill.js" type="module"></script>
 </body>
 
 </html>

@@ -5,9 +5,16 @@ let numberOfPeople = 2;
 let memberNames = [];
 
 // functions
+let groupSpinboxContentClassTimeout;
 function updateGroupSpinbox() {
     numberOfPeople = Math.min(Math.max(2, numberOfPeople), 10);
     groupSpinboxNumberElement.innerHTML = numberOfPeople;
+
+    groupSpinboxContentElement.classList.add('spinbox-content-animate');
+    clearTimeout(groupSpinboxContentClassTimeout);
+    groupSpinboxContentClassTimeout = setTimeout(() => {
+        groupSpinboxContentElement.classList.remove('spinbox-content-animate');
+    }, 200);
 }
 
 function generateMemberInputHTML() {
@@ -39,6 +46,7 @@ const groupNameInputElement = document.querySelector('.js-group-name-input');
 const groupSpinboxNumberElement = document.querySelector('.js-group-spinbox-number');
 const groupSpinboxDecrementtButtonElement = document.querySelector('.js-group-spinbox-decrement')
 const groupSpinboxIncrementButtonElement = document.querySelector('.js-group-spinbox-increment')
+const groupSpinboxContentElement = document.querySelector('.js-spinbox-content')
 const memberInputContainerElement = document.querySelector('.js-member-input-container');
 const submitCreateGroupButtonElement = document.querySelector('.js-submit-create-group-button');
 

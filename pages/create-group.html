@@ -22,15 +22,17 @@
   <p class="title-label">BitterSplitter</p>
   <div class="divider-container"></div>
   <div class="column-container">
-    <p class="body-text">Create Group</p>
-    <input type="text" placeholder="Group Name" class="group-name-input js-group-name-input">
+    <p class="body-title">Create Group</p>
+    <input type="text" placeholder="Group Name" class="js-group-name-input">
     <div class="spinbox-container">
-      <button><i class='bx bxs-minus-circle js-group-spinbox-decrement'></i></button>
-      <span class="js-group-spinbox-number">2</span> <i class='bx  bxs-man fix-icon-padding'></i>
-      <button><i class='bx bxs-plus-circle js-group-spinbox-increment'></i></button>
+      <button class="spinbox-button"><i class='bx bxs-minus-circle js-group-spinbox-decrement'></i></button>
+      <div class="spinbox-content js-spinbox-content">
+        <span class="js-group-spinbox-number">2</span> <i class='bx  bxs-man fix-icon-padding'></i>
+      </div>
+      <button class="spinbox-button"><i class='bx bxs-plus-circle js-group-spinbox-increment'></i></button>
     </div>
     <div class="member-input-container js-member-input-container"></div>
-    <button class="submit-create-group-button js-submit-create-group-button">
+    <button class="js-submit-create-group-button">
       Submit
       <i class='bx bxs-send'></i>
     </button>

@@ -1,7 +1,8 @@
 /* button */
-.submit-create-group-button {
-  width: 100%;
-  font-size: 2rem;
+.spinbox-button {
+  width: auto;
+  font-size: 20rem;
+  padding: 0.5rem;
 }
 
 /* spinbox */
@@ -19,13 +20,31 @@
 }
 
 .spinbox-container .fix-icon-padding {
-  margin: 0 -0.5rem 0 -1rem;
+  margin: 0 -0.75rem 0 0;
 }
 
-/* failure */
-input.failure-border {
-  border-color: rgb(153, 0, 0);
-  box-shadow: 0 0 10px rgba(from red r g b / 0.5);
+.spinbox-content {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinbox-content-animate {
+  animation: scaleUp 200ms ease-in;
+}
+
+@keyframes scaleUp {
+  0% {
+    scale: 0.4;
+  }
+
+  60% {
+    scale: 1.1;
+  }
+
+  100% {
+    scale: 1;
+  }
 }
 
 /* div */
