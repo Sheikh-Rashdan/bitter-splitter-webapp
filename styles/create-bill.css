@@ -1,3 +1,8 @@
+/* button */
+.delete-bill-item-button {
+  font-size: 1.2rem;
+}
+
 /* div */
 .member-card-container {
   width: 100%;
@@ -50,6 +55,7 @@
   padding: 1rem;
   transition: 300ms ease;
   cursor: pointer;
+  text-align: left;
 }
 
 .bill-item-card:last-of-type {

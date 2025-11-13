@@ -38,6 +38,14 @@ function checkMemberNameInputs(selectedMemberNames) {
         if (!selectedMemberNames[i])
             return i;
     }
+    for (let i = 0; i < numberOfPeople; i++) {
+        for (let j = i + 1; j < numberOfPeople; j++) {
+            if (selectedMemberNames[i] === selectedMemberNames[j]) {
+                alert('Member Names Cannot Repeat!');
+                return j;
+            }
+        }
+    }
     return null;
 }
 

@@ -19,10 +19,23 @@ function generateBillHTML() {
         generatedHTML += 'No Data';
     } else {
         group.bills.forEach((bill) => {
-            generatedHTML += 'Yes Data';
+            generatedHTML += `
+                <div class="bill-card js-bill-card" data-bill-id="${bill.id}">
+                    <p>${bill.date}</p>
+                    <p>₹ ${bill.total}</p>
+                </div>
+            `;
         });
     }
     billCardsContainerElement.innerHTML = generatedHTML;
+
+    document.querySelectorAll('.js-bill-card').forEach((element) => {
+        element.addEventListener('click', () => {
+            setTimeout(() => {
+                location.href = `view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`;
+            }, 300);
+        });
+    });
 }
 
 // DOM elements

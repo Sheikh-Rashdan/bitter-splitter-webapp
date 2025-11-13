@@ -1,9 +1,9 @@
-import { getGroupbyName } from "../scripts/groups.js";
+import { getGroupbyName, createBillbyName } from "../scripts/groups.js";
 
 // data
 const groupName = new URLSearchParams(location.search).get('groupName');
 const group = getGroupbyName(groupName);
-let bill = [];
+let billItems = [];
 let currentItem = {
     name: 'Item 0',
     cost: 0,
@@ -44,39 +44,36 @@ function updateMemberCards() {
     });
 }
 
-let billItemCardLongPressTimeout;
 function generateBillItemHTML() {
     let generatedHTML = '';
-    if (bill.length === 0) {
+    if (billItems.length === 0) {
         generatedHTML = 'No Items';
     } else {
-        bill.forEach((billItem) => {
+        billItems.forEach((billItem) => {
             generatedHTML += `
-            <div class="bill-item-card js-bill-item-card" data-item-name="${billItem.name}">
+            <div class="bill-item-card js-bill-item-card">
                 <p>${billItem.name}</p>
                 <p>₹ ${billItem.cost}</p>
+                <button class="plain-button delete-bill-item-button js-delete-bill-item-button" data-item-name="${billItem.name}">
+                    <i class='bx  bxs-x'></i> 
+                </button>
             </div>
         `;
         });
-        generatedHTML += 'Long Press to Delete';
     }
     billItemCardContainerElement.innerHTML = generatedHTML;
 
-    document.querySelectorAll('.js-bill-item-card').forEach((element) => {
-        element.addEventListener('pointerdown', () => {
-            clearTimeout(billItemCardLongPressTimeout);
-            billItemCardLongPressTimeout = setTimeout(() => {
-                bill.splice(bill.indexOf(element.dataset.itemName), 1);
-                element.classList.add('bill-item-card-deleting');
-                setTimeout(() => {
-                    generateBillItemHTML();
-                }, 300);
-            }, 500);
+    document.querySelectorAll('.js-delete-bill-item-button').forEach((element) => {
+        element.addEventListener('click', () => {
+            console.log(element.dataset.itemName);
+            billItems = billItems.filter((billItem) => {
+                if (billItem.name === element.dataset.itemName) return false;
+                return true;
+            });
+            generateBillItemHTML();
         });
-        element.addEventListener('pointerup', () => {
-            clearTimeout(billItemCardLongPressTimeout);
-        })
     });
+
 }
 
 // DOM elements
@@ -86,6 +83,7 @@ const memberCardContainerElement = document.querySelector('.js-member-card-conta
 const itemNameInputElement = document.querySelector('.js-item-name-input');
 const itemCostInputElement = document.querySelector('.js-item-cost-input');
 const submitAddItemButtonElement = document.querySelector('.js-submit-add-item-button');
+const submitSplitBillButton = document.querySelector('.js-submit-split-bill-button');
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -103,15 +101,40 @@ submitAddItemButtonElement.addEventListener('click', () => {
         itemCostInputElement.focus();
         return;
     }
+    currentItem.cost = Number(itemCostInputElement.value);
+
     if (currentItem.splitBy.length === 0) {
-        alert('Select Members to Split!');
+        alert('Select Members To Split!');
         return;
     }
-    currentItem.name = itemNameInputElement.value !== '' ? itemNameInputElement.value : `Item ${bill.length + 1}`;
-    currentItem.cost = Number(itemCostInputElement.value);
-    bill.push(structuredClone(currentItem));
+
+    currentItem.name = itemNameInputElement.value !== '' ? itemNameInputElement.value : `Item ${billItems.length + 1}`;
+    let isNameUnique = false;
+    while (!isNameUnique) {
+        isNameUnique = true;
+        for (let i = 0; i < billItems.length; i++) {
+            let billItem = billItems[i];
+            if (billItem.name === currentItem.name) {
+                isNameUnique = false;
+                currentItem.name += '-1';
+            }
+        }
+    }
+
+    billItems.push(structuredClone(currentItem));
 
     itemNameInputElement.value = '';
     itemCostInputElement.value = '';
     generateBillItemHTML();
+});
+
+submitSplitBillButton.addEventListener('click', () => {
+    if (billItems.length === 0) {
+        alert('Add Items To Split!');
+        return;
+    }
+    createBillbyName(billItems, groupName);
+    setTimeout(() => {
+        location.href = `view-group.html?groupName=${groupName}`;
+    }, 300);
 });

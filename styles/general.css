@@ -80,6 +80,19 @@ button:active {
   scale: 1.1;
 }
 
+.plain-button {
+  width: auto;
+  border: none;
+  padding: none;
+}
+
+.plain-button:hover {
+  background-color: transparent;
+  color: white;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
 /* input */
 input[type='text'],
 input[type='number'] {

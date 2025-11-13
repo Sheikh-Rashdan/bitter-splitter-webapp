@@ -1,4 +1,8 @@
 /* div */
+.column-container {
+  max-height: 40vh;
+}
+
 .member-cards-outer-container {
   width: 100%;
   border: 2px solid white;
@@ -20,4 +24,29 @@
   border-left: 2px solid white;
   padding: 0 1rem 0;
   font-weight: 600;
+}
+
+.bill-cards-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-y: scroll;
+  padding: 1rem 0;
+  mask-image: linear-gradient(to bottom, transparent, white 10%, white 90%, transparent);
+}
+
+.bill-card {
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem;
+}
+
+.bill-card:hover {
+  background-color: rgba(from white r g b / 0.05);
 }
