@@ -42,7 +42,7 @@ export function createBillbyName(items, name) {
 
     group.bills.push({
         id,
-        date: dayjs().format('DD-MM-YY hh:mm A'),
+        date: dayjs().format('DD/MM/YY hh:mm A'),
         total,
         items
     });

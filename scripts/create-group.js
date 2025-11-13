@@ -61,6 +61,7 @@ const groupSpinboxIncrementButtonElement = document.querySelector('.js-group-spi
 const groupSpinboxContentElement = document.querySelector('.js-spinbox-content')
 const memberInputContainerElement = document.querySelector('.js-member-input-container');
 const submitCreateGroupButtonElement = document.querySelector('.js-submit-create-group-button');
+const backButtonElement = document.querySelector('.js-back-button');
 
 // event listeners
 groupNameInputElement.addEventListener('input', () => {
@@ -115,9 +116,14 @@ submitCreateGroupButtonElement.addEventListener('click', () => {
     addGroup(groupName, selectedMemberNames);
     setTimeout(() => {
         location.assign('../index.html');
-        // location.href = '../index.html';
     }, 300);
 });
 
-// generate HTML
+backButtonElement.addEventListener('click', () => {
+    setTimeout(() => {
+        location.assign('../index.html');
+    }, 300);
+});
+
+// HTML
 generateMemberInputHTML();

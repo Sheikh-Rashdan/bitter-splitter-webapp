@@ -84,6 +84,7 @@ const itemNameInputElement = document.querySelector('.js-item-name-input');
 const itemCostInputElement = document.querySelector('.js-item-cost-input');
 const submitAddItemButtonElement = document.querySelector('.js-submit-add-item-button');
 const submitSplitBillButton = document.querySelector('.js-submit-split-bill-button');
+const backButtonElement = document.querySelector('.js-back-button');
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -136,6 +137,11 @@ submitSplitBillButton.addEventListener('click', () => {
     let billId = createBillbyName(billItems, groupName);
     setTimeout(() => {
         location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
-        // location.href = `./view-bill.html?groupName=${groupName}&billId=${billId}`;
+    }, 300);
+});
+
+backButtonElement.addEventListener('click', () => {
+    setTimeout(() => {
+        location.assign(`view-group.html?groupName=${groupName}`);
     }, 300);
 });

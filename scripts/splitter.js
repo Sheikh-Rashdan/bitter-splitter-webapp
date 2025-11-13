@@ -21,7 +21,6 @@ function generateGroupHTML() {
         element.addEventListener('click', () => {
             setTimeout(() => {
                 location.assign(`./pages/view-group.html?groupName=${element.dataset.groupName}`);
-                // location.href = `./pages/view-group.html?groupName=${element.dataset.groupName}`;
             }, 300);
         });
     });
@@ -38,5 +37,5 @@ createGroupButtonElement.addEventListener('click', () => {
     }, 300);
 });
 
-// generate HTML
+// HTML
 generateGroupHTML();

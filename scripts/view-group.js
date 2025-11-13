@@ -6,7 +6,6 @@ const group = getGroupbyName(groupName);
 
 if (!group) {
     location.assign('../index.html');
-    // location.href = '../index.html';
 }
 
 // functions
@@ -38,7 +37,6 @@ function generateBillHTML() {
         element.addEventListener('click', () => {
             setTimeout(() => {
                 location.assign(`./view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`);
-                // location.href = `./view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`;
             }, 300);
         });
     });
@@ -50,6 +48,7 @@ const memberCardsInnerContainerElement = document.querySelector('.js-member-card
 const billCardsContainerElement = document.querySelector('.js-bill-cards-container');
 const newBillButtonElement = document.querySelector('.js-new-bill-button');
 const deleteGroupButtonElement = document.querySelector('.js-delete-group-button');
+const backButtonElement = document.querySelector('.js-back-button');
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -60,7 +59,6 @@ generateBillHTML();
 newBillButtonElement.addEventListener('click', () => {
     setTimeout(() => {
         location.assign(`./create-bill.html?groupName=${groupName}`);
-        // location.href = `./create-bill.html?groupName=${groupName}`;
     }, 300);
 });
 
@@ -68,6 +66,12 @@ deleteGroupButtonElement.addEventListener('click', () => {
     removeGroup(groupName);
     setTimeout(() => {
         location.assign('../index.html');
-        // location.href = '../index.html';
+    }, 300);
+});
+
+
+backButtonElement.addEventListener('click', () => {
+    setTimeout(() => {
+        location.assign('../index.html');
     }, 300);
 });

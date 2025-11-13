@@ -10,14 +10,13 @@ const bill = getBillbyBillId(group, billId);
 
 if (!bill) {
     location.assign(`./view-group.html?groupName=${groupName}`);
-    // location.href = `./view-group.html?groupName=${groupName}`;
 }
 
 // functions
+let splitAmounts = [];
 function generateMemberHTML() {
     let generatedHTML = '';
 
-    let splitAmounts = [];
     group.members.forEach((memberName) => {
         splitAmounts.push({
             memberName,
@@ -65,6 +64,8 @@ const billLabelElement = document.querySelector('.js-bill-label');
 const billItemCardContainerElement = document.querySelector('.js-bill-item-card-container');
 const memberCardContainerElement = document.querySelector('.js-member-card-container');
 const deleteBillButtonElement = document.querySelector('.js-delete-bill-button');
+const backButtonElement = document.querySelector('.js-back-button');
+const shareButtonElement = document.querySelector('.js-share-button');
 
 // HTML
 billDateElement.innerHTML = bill.date;
@@ -77,6 +78,31 @@ deleteBillButtonElement.addEventListener('click', () => {
     removeBillbyId(group, billId);
     setTimeout(() => {
         location.assign(`./view-group.html?groupName=${groupName}`);
-        // location.href = `./view-group.html?groupName=${groupName}`;
     }, 300);
+});
+
+backButtonElement.addEventListener('click', () => {
+    setTimeout(() => {
+        location.assign(`view-group.html?groupName=${groupName}`);
+    }, 300);
+});
+
+shareButtonElement.addEventListener('click', () => {
+    let textToCopy = `Bill - ${bill.date}\n`;
+    textToCopy += 'Item name - Cost\n';
+    bill.items.forEach((billItem) => {
+        textToCopy += `${billItem.name} - ₹ ${billItem.cost}\n`;
+    });
+    textToCopy += '----------------\n';
+    textToCopy += 'Person - Amount\n';
+    splitAmounts.forEach((splitAmount) => {
+        textToCopy += `${splitAmount.memberName} - ₹ ${splitAmount.amount}\n`;
+    });
+    textToCopy += '----------------\n';
+    if (!navigator.clipboard) {
+        alert('Failed To Copy To Clipboard!');
+        return;
+    }
+    navigator.clipboard.writeText(textToCopy);
+    alert('Copied To Clipboard!');
 });
