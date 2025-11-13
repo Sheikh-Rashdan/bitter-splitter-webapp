@@ -49,6 +49,10 @@ function checkMemberNameInputs(selectedMemberNames) {
     return null;
 }
 
+function isAlphaNumeric(string) {
+    return /^[a-zA-Z0-9 ]+$/.test(string);
+}
+
 // DOM elements
 const groupNameInputElement = document.querySelector('.js-group-name-input');
 const groupSpinboxNumberElement = document.querySelector('.js-group-spinbox-number');
@@ -76,11 +80,25 @@ groupSpinboxIncrementButtonElement.addEventListener('click', () => {
 });
 
 submitCreateGroupButtonElement.addEventListener('click', () => {
-    if (!groupNameInputElement.value) {
+    let groupName = groupNameInputElement.value;
+    if (!groupName) {
         groupNameInputElement.classList.add('failure-border');
         groupNameInputElement.focus();
         return;
     }
+
+    if (!isAlphaNumeric(groupName)) {
+        alert('Group Name Cannot Have Symbols!');
+        groupNameInputElement.classList.add('failure-border');
+        groupNameInputElement.focus();
+        return;
+    }
+    if (getGroupbyName(groupName)) {
+        alert('Group Name Already Exists!');
+        groupNameInputElement.classList.add('failure-border');
+        groupNameInputElement.focus();
+    }
+
     let selectedMemberNames = memberNames.slice(0, numberOfPeople);
     let failureInputIndex = checkMemberNameInputs(selectedMemberNames);
 
@@ -94,12 +112,7 @@ submitCreateGroupButtonElement.addEventListener('click', () => {
         return;
     }
 
-    if (getGroupbyName(groupNameInputElement.value)) {
-        alert('Group Name Already Exists!');
-        return;
-    }
-
-    addGroup(groupNameInputElement.value, selectedMemberNames);
+    addGroup(groupName, selectedMemberNames);
     setInterval(() => {
         location.href = '../index.html';
     }, 300);

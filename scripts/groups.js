@@ -10,6 +10,11 @@ export function addGroup(name, members) {
     saveGroups();
 }
 
+export function removeGroup(name) {
+    groups = groups.filter(group => group.name !== name);
+    saveGroups();
+}
+
 export function getGroupbyName(name) {
     for (let i = 0; i < groups.length; i++) {
         const group = groups[i];
@@ -33,15 +38,27 @@ export function createBillbyName(items, name) {
         }
         crypto.randomUUID = uuidFallback;
     }
+    let id = crypto.randomUUID();
 
     group.bills.push({
-        id: crypto.randomUUID(),
+        id,
         date: dayjs().format('DD-MM-YY hh:mm A'),
         total,
         items
     });
 
     saveGroups();
+
+    return id;
+}
+
+export function removeBillbyId(group, billId) {
+    group.bills = group.bills.filter(bill => bill.id !== billId);
+    saveGroups();
+}
+
+export function getBillbyBillId(group, billId) {
+    return group.bills[group.bills.findIndex(bill => bill.id === billId)];
 }
 
 function loadGroups() {
@@ -62,15 +79,17 @@ function clearGroups() {
     name: 'GroupName1',
     members: ['MemberName1', 'MemberName2', 'MemberName3'],
     bills: [
-           id: 'bill02',
-           date: Date(),
-           total: 1000,
-           items: [
-                {
-                    name: 'ItemName1',
-                    cost: 100,
-                    splitBy: ['MemberName2', 'MemberName3']
-                }
-            ] 
+            {
+                id: 'bill02',
+                date: Date(),
+                total: 1000,
+                items: [
+                    {
+                        name: 'ItemName1',
+                        cost: 100,
+                        splitBy: ['MemberName2', 'MemberName3']
+                    }
+                ]
+            } 
         ]
 }*/

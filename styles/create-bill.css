@@ -41,7 +41,6 @@
   margin-top: -1rem;
 }
 
-
 .bill-item-card {
   width: 100%;
   display: flex;
@@ -60,6 +59,15 @@
 
 .bill-item-card:last-of-type {
   animation: scaleUp 300ms ease;
+}
+
+.bill-item-card p {
+  flex: 1 1 0;
+}
+
+.bill-item-card p:last-of-type {
+  text-align: right;
+  padding-right: 0.625rem;
 }
 
 @keyframes scaleUp {

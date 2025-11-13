@@ -133,8 +133,8 @@ submitSplitBillButton.addEventListener('click', () => {
         alert('Add Items To Split!');
         return;
     }
-    createBillbyName(billItems, groupName);
+    let billId = createBillbyName(billItems, groupName);
     setTimeout(() => {
-        location.href = `view-group.html?groupName=${groupName}`;
+        location.href = `view-bill.html?groupName=${groupName}&billId=${billId}`;
     }, 300);
 });

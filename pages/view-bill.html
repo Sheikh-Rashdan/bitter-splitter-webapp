@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title -->
+  <title>BitterSplitter</title>
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles/general.css">
+  <link rel="stylesheet" href="../styles/view-bill.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <!-- Icons -->
+  <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <p class="title-label">BitterSplitter</p>
+  <div class="divider-container"></div>
+  <div class="column-container">
+    <p class="body-subtitle js-bill-date">Bill Date</p>
+    <div class="member-card-container js-member-card-container">
+    </div>
+  </div>
+  <div class="column-container">
+    <p class="body-subtitle js-bill-label">Bill</p>
+    <div class="bill-item-card-container js-bill-item-card-container">
+    </div>
+    <button class="js-delete-bill-button">
+      Delete Bill
+      <i class='bx  bxs-trash-x'></i>
+    </button>
+  </div>
+  <script src="../scripts/view-bill.js" type="module"></script>
+</body>
+
+</html>
