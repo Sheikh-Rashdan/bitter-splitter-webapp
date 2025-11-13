@@ -56,7 +56,7 @@ generateBillHTML();
 
 // event listeners
 newBillButtonElement.addEventListener('click', () => {
-    setInterval(() => {
+    setTimeout(() => {
         location.href = `./create-bill.html?groupName=${groupName}`;
     }, 300);
 });
