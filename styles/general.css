@@ -32,6 +32,14 @@ i {
   color: inherit;
 }
 
+a {
+  text-decoration: none;
+}
+
+a span {
+  border-bottom: 2px solid white;
+}
+
 /* text */
 .title-label {
   font-size: 3.5rem;
@@ -146,6 +154,15 @@ div {
 .button-container {
   display: flex;
   margin: 2rem;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
 }
 
 /* media queries */
