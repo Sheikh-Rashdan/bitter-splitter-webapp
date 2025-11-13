@@ -147,3 +147,10 @@ div {
   display: flex;
   margin: 2rem;
 }
+
+/* media queries */
+@media screen and (min-width: 768px) {
+  body {
+    padding: 0 25rem;
+  }
+}

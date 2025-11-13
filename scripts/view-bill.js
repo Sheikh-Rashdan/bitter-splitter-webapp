@@ -88,7 +88,9 @@ backButtonElement.addEventListener('click', () => {
 });
 
 shareButtonElement.addEventListener('click', () => {
-    let textToCopy = `Bill - ${bill.date}\n`;
+    let textToCopy = 'BitterSplitter Bill\n';
+    textToCopy += `${bill.date}\n`;
+    textToCopy += '----------------\n';
     textToCopy += 'Item name - Cost\n';
     bill.items.forEach((billItem) => {
         textToCopy += `${billItem.name} - ₹ ${billItem.cost}\n`;
@@ -99,10 +101,17 @@ shareButtonElement.addEventListener('click', () => {
         textToCopy += `${splitAmount.memberName} - ₹ ${splitAmount.amount}\n`;
     });
     textToCopy += '----------------\n';
+
     if (!navigator.clipboard) {
-        alert('Failed To Copy To Clipboard!');
+        alert('Failed To Share!');
         return;
     }
+    navigator.share({ text: textToCopy });
     navigator.clipboard.writeText(textToCopy);
-    alert('Copied To Clipboard!');
+
+    let previousHTML = shareButtonElement.innerHTML;
+    shareButtonElement.innerText = 'Copied To Clipboard!';
+    setTimeout(() => {
+        shareButtonElement.innerHTML = previousHTML;
+    }, 1000);
 });
