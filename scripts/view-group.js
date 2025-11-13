@@ -36,7 +36,7 @@ function generateBillHTML() {
     document.querySelectorAll('.js-bill-card').forEach((element) => {
         element.addEventListener('click', () => {
             setTimeout(() => {
-                location.href = `view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`;
+                location.href = `./view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`;
             }, 300);
         });
     });
@@ -57,7 +57,7 @@ generateBillHTML();
 // event listeners
 newBillButtonElement.addEventListener('click', () => {
     setInterval(() => {
-        location.href = `create-bill.html?groupName=${groupName}`;
+        location.href = `./create-bill.html?groupName=${groupName}`;
     }, 300);
 });
 

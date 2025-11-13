@@ -20,7 +20,7 @@ function generateGroupHTML() {
     groupCardElementsList.forEach((element) => {
         element.addEventListener('click', () => {
             setInterval(() => {
-                location.href = `pages/view-group.html?groupName=${element.dataset.groupName}`;
+                location.href = `./pages/view-group.html?groupName=${element.dataset.groupName}`;
             }, 300);
         });
     });
@@ -33,7 +33,7 @@ const groupCardContainerElement = document.querySelector('.js-group-card-contain
 // event listeners
 createGroupButtonElement.addEventListener('click', () => {
     setInterval(() => {
-        location.href = 'pages/create-group.html'
+        location.href = './pages/create-group.html'
     }, 300);
 });
 
