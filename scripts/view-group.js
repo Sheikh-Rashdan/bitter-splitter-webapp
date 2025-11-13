@@ -5,7 +5,8 @@ const groupName = new URLSearchParams(location.search).get('groupName');
 const group = getGroupbyName(groupName);
 
 if (!group) {
-    location.href = '../index.html';
+    location.assign('../index.html');
+    // location.href = '../index.html';
 }
 
 // functions
@@ -36,7 +37,8 @@ function generateBillHTML() {
     document.querySelectorAll('.js-bill-card').forEach((element) => {
         element.addEventListener('click', () => {
             setTimeout(() => {
-                location.href = `./view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`;
+                location.assign(`./view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`);
+                // location.href = `./view-bill.html?groupName=${groupName}&billId=${element.dataset.billId}`;
             }, 300);
         });
     });
@@ -57,13 +59,15 @@ generateBillHTML();
 // event listeners
 newBillButtonElement.addEventListener('click', () => {
     setTimeout(() => {
-        location.href = `./create-bill.html?groupName=${groupName}`;
+        location.assign(`./create-bill.html?groupName=${groupName}`);
+        // location.href = `./create-bill.html?groupName=${groupName}`;
     }, 300);
 });
 
 deleteGroupButtonElement.addEventListener('click', () => {
     removeGroup(groupName);
     setTimeout(() => {
-        location.href = '../index.html';
+        location.assign('../index.html');
+        // location.href = '../index.html';
     }, 300);
 });

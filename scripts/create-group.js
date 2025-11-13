@@ -114,7 +114,8 @@ submitCreateGroupButtonElement.addEventListener('click', () => {
 
     addGroup(groupName, selectedMemberNames);
     setTimeout(() => {
-        location.href = '../index.html';
+        location.assign('../index.html');
+        // location.href = '../index.html';
     }, 300);
 });
 

@@ -9,7 +9,8 @@ const group = getGroupbyName(groupName);
 const bill = getBillbyBillId(group, billId);
 
 if (!bill) {
-    location.href = `./view-group.html?groupName=${groupName}`;
+    location.assign(`./view-group.html?groupName=${groupName}`);
+    // location.href = `./view-group.html?groupName=${groupName}`;
 }
 
 // functions
@@ -75,6 +76,7 @@ generateBillItemHTML();
 deleteBillButtonElement.addEventListener('click', () => {
     removeBillbyId(group, billId);
     setTimeout(() => {
-        location.href = `./view-group.html?groupName=${groupName}`;
+        location.assign(`./view-group.html?groupName=${groupName}`);
+        // location.href = `./view-group.html?groupName=${groupName}`;
     }, 300);
 });

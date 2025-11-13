@@ -135,6 +135,7 @@ submitSplitBillButton.addEventListener('click', () => {
     }
     let billId = createBillbyName(billItems, groupName);
     setTimeout(() => {
-        location.href = `./view-bill.html?groupName=${groupName}&billId=${billId}`;
+        location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
+        // location.href = `./view-bill.html?groupName=${groupName}&billId=${billId}`;
     }, 300);
 });
