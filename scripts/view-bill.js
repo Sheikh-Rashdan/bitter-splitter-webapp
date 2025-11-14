@@ -33,11 +33,13 @@ function generateMemberHTML() {
         }
     });
 
+    splitAmounts.forEach(splitAmount => splitAmount.amount = Math.round(splitAmount.amount * 100) / 100);
+
     splitAmounts.forEach((splitAmount) => {
         generatedHTML += `
             <div class="member-card">
                 <p>${splitAmount.memberName}</p>
-                <p>₹ ${Math.round(splitAmount.amount * 100) / 100}</p>
+                <p>₹ ${splitAmount.amount}</p>
             </div>
         `;
     });

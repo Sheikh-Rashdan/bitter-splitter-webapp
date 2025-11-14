@@ -102,7 +102,7 @@ submitAddItemButtonElement.addEventListener('click', () => {
         itemCostInputElement.focus();
         return;
     }
-    currentItem.cost = Number(itemCostInputElement.value);
+    currentItem.cost = Math.round(Number(itemCostInputElement.value) * 100) / 100;
 
     if (currentItem.splitBy.length === 0) {
         alert('Select Members To Split!');
