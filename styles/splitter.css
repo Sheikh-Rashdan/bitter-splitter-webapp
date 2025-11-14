@@ -1,3 +1,19 @@
+/* text */
+.subtitle-italic {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: 0.25rem;
+  margin: 0.625rem auto 0;
+  font-style: italic;
+}
+
+.subtitle-italic i {
+  font-size: 1.2rem;
+}
+
 /* div */
 .group-card-container {
   width: 100%;
