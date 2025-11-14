@@ -14,7 +14,7 @@ Made this to practice HTML, CSS and Javascript ✌️
 ## Gallery
 
 <p align="center">
-  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-1.jpg" width=410px height=800px>
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/1.jpg" width=410px height=800px>
 </p>
 <p align="center">
   Ability to create and store multiple groups
@@ -23,7 +23,7 @@ Made this to practice HTML, CSS and Javascript ✌️
 <br><br><br>
 
 <p align="center">
-  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-2.jpg" width=410px height=800px>
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/2.jpg" width=410px height=800px>
 </p>
 <p align="center">
   Creating a group
@@ -32,7 +32,7 @@ Made this to practice HTML, CSS and Javascript ✌️
 <br><br><br>
 
 <p align="center">
-  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-3.jpg" width=410px height=800px>
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/3.jpg" width=410px height=800px>
 </p>
 <p align="center">
   Viewing a group
@@ -41,7 +41,7 @@ Made this to practice HTML, CSS and Javascript ✌️
 <br><br><br>
 
 <p align="center">
-  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-4.jpg" width=410px height=800px>
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/4.jpg" width=410px height=800px>
 </p>
 <p align="center">
   Creating a bill
@@ -50,7 +50,7 @@ Made this to practice HTML, CSS and Javascript ✌️
 <br><br><br>
 
 <p align="center">
-  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-5.jpg" width=410px height=800px>
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/5.jpg" width=410px height=800px>
 </p>
 <p align="center">
   Viewing a bill
