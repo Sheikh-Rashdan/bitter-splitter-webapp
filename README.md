@@ -1,0 +1,57 @@
+# Todo List
+
+A simple webapp to split bills with different groups of people.
+[View Webapp](https://sheikh-rashdan.github.io/bitter-splitter-webapp/ "Link to Github Pages")
+
+## Description
+
+A simple webapp designed for mobile and desktop that allows users to split bills with multiple groups of people, as well as view and share previous bills.
+
+Made this to practice HTML, CSS and Javascript ✌️
+
+---
+
+## Gallery
+
+<p align="center">
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-1.jpg" width=410px height=800px>
+</p>
+<p align="center">
+  Ability to create and store multiple groups
+</p>
+
+<br><br><br>
+
+<p align="center">
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-2.jpg" width=410px height=800px>
+</p>
+<p align="center">
+  Creating a group
+</p>
+
+<br><br><br>
+
+<p align="center">
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-3.jpg" width=410px height=800px>
+</p>
+<p align="center">
+  Viewing a group
+</p>
+
+<br><br><br>
+
+<p align="center">
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-4.jpg" width=410px height=800px>
+</p>
+<p align="center">
+  Creating a bill
+</p>
+
+<br><br><br>
+
+<p align="center">
+  <img src="https://github.com/Sheikh-Rashdan/bitter-splitter-webapp/blob/master/display/mobile-5.jpg" width=410px height=800px>
+</p>
+<p align="center">
+  Viewing a bill
+</p>

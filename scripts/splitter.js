@@ -7,11 +7,11 @@ function generateGroupHTML() {
         generatedHTML = 'No Groups';
     } else {
         groups.forEach((group) => {
-            generatedHTML += `
+            generatedHTML = `
                 <div class="group-card js-group-card" data-group-name="${group.name}">
                     ${group.name} (${group.members.length})
                 </div>
-            `
+            ` + generatedHTML;
         });
     }
     groupCardContainerElement.innerHTML = generatedHTML;
