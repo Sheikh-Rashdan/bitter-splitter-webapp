@@ -3,11 +3,12 @@ import { addGroup, getGroupbyName } from '../scripts/groups.js';
 // data
 let numberOfPeople = 2;
 let memberNames = [];
+const MAX_NUMBER_OF_PEOPLE = 100;
 
 // functions
 let groupSpinboxContentClassTimeout;
 function updateGroupSpinbox() {
-    numberOfPeople = Math.min(Math.max(2, numberOfPeople), 10);
+    numberOfPeople = Math.min(Math.max(2, numberOfPeople), MAX_NUMBER_OF_PEOPLE);
     groupSpinboxNumberElement.innerHTML = numberOfPeople;
 
     groupSpinboxContentElement.classList.add('spinbox-content-animate');
