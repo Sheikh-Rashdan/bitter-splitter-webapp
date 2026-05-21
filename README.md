@@ -1,4 +1,4 @@
-# Todo List
+# Bitter Splitter
 
 A simple webapp to split bills with different groups of people.
 [View Webapp](https://sheikh-rashdan.github.io/bitter-splitter-webapp/ "Link to Github Pages")
