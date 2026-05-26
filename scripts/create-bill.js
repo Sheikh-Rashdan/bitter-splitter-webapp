@@ -65,7 +65,6 @@ function generateBillItemHTML() {
 
     document.querySelectorAll('.js-delete-bill-item-button').forEach((element) => {
         element.addEventListener('click', () => {
-            console.log(element.dataset.itemName);
             billItems = billItems.filter((billItem) => {
                 if (billItem.name === element.dataset.itemName) return false;
                 return true;
@@ -85,6 +84,8 @@ const itemCostInputElement = document.querySelector('.js-item-cost-input');
 const submitAddItemButtonElement = document.querySelector('.js-submit-add-item-button');
 const submitSplitBillButton = document.querySelector('.js-submit-split-bill-button');
 const backButtonElement = document.querySelector('.js-back-button');
+const billTaxCheckbox = document.querySelector('.js-bill-tax-checkbox');
+const billTaxLabel = document.querySelector('.js-bill-tax-label');
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -117,7 +118,7 @@ submitAddItemButtonElement.addEventListener('click', () => {
             let billItem = billItems[i];
             if (billItem.name === currentItem.name) {
                 isNameUnique = false;
-                currentItem.name += '-1';
+                currentItem.name += '~';
             }
         }
     }
@@ -134,6 +135,14 @@ submitSplitBillButton.addEventListener('click', () => {
         alert('Add Items To Split!');
         return;
     }
+
+    if (billTaxCheckbox.checked) {
+        billItems.forEach(billItem => {
+            billItem.cost += billItem.cost * 0.05;
+            billItem.cost = Math.round(billItem.cost * 100) / 100;
+        });
+    }
+
     let billId = createBillbyName(billItems, groupName);
     setTimeout(() => {
         location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
@@ -144,4 +153,8 @@ backButtonElement.addEventListener('click', () => {
     setTimeout(() => {
         location.assign(`view-group.html?groupName=${groupName}`);
     }, 300);
+});
+
+billTaxLabel.addEventListener('click', () => {
+    billTaxCheckbox.checked = !billTaxCheckbox.checked;
 });
