@@ -135,6 +135,14 @@ submitSplitBillButton.addEventListener('click', () => {
         alert('Add Items To Split!');
         return;
     }
+
+    if (billTaxCheckbox.checked) {
+        billItems.forEach(billItem => {
+            billItem.cost += billItem.cost * 0.05;
+            billItem.cost = Math.round(billItem.cost * 100) / 100;
+        });
+    }
+
     let billId = createBillbyName(billItems, groupName);
     setTimeout(() => {
         location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
