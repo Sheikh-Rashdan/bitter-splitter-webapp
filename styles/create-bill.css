@@ -70,6 +70,52 @@
   padding-right: 0.625rem;
 }
 
+.bill-tax-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bill-tax-checkbox {
+  accent-color: black;
+  aspect-ratio: 1;
+  height: 15px;
+  cursor: pointer;
+}
+
+.bill-tax-label {
+  cursor: pointer;
+}
+
+.bill-tax-info {
+  position: relative;
+  font-size: 1.2rem;
+  cursor: help;
+}
+
+.bill-tax-info::after {
+  content: attr(css-tooltip);
+  position: absolute;
+  font-family: 'Elms Sans', Arial;
+  font-size: 0.8rem;
+  color: white;
+  text-align: center;
+  background-color: rgba(from white r g b / 0.1);
+  padding: 0.2rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  width: 200px;
+  bottom: 150%;
+  right: -115%;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.bill-tax-info:hover::after {
+  opacity: 1;
+}
+
 @keyframes scaleUp {
   0% {
     scale: 0;
