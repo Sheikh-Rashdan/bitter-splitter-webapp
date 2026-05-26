@@ -108,7 +108,7 @@ shareButtonElement.addEventListener('click', () => {
         alert('Failed To Share!');
         return;
     }
-    navigator.share({ text: textToCopy });
+    navigator.share({ text: textToCopy }).catch(() => alert("Failed To Share!"));
     navigator.clipboard.writeText(textToCopy);
 
     let previousHTML = shareButtonElement.innerHTML;
