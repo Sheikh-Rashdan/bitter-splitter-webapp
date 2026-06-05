@@ -110,6 +110,7 @@
   right: -120%;
   opacity: 0;
   transition: opacity 300ms ease;
+  pointer-events: none;
 }
 
 .bill-tax-info:hover::after {
