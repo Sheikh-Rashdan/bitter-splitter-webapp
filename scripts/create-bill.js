@@ -70,9 +70,16 @@ function generateBillItemHTML() {
                 return true;
             });
             generateBillItemHTML();
+            generateBillTotalHTML();
         });
     });
 
+}
+
+function generateBillTotalHTML() {
+    let total = 0;
+    billItems.forEach(item => total += item.cost);
+    billTotal.innerHTML = `Bill - ₹${total}`;
 }
 
 // DOM elements
@@ -86,6 +93,7 @@ const submitSplitBillButton = document.querySelector('.js-submit-split-bill-butt
 const backButtonElement = document.querySelector('.js-back-button');
 const billTaxCheckbox = document.querySelector('.js-bill-tax-checkbox');
 const billTaxLabel = document.querySelector('.js-bill-tax-label');
+const billTotal = document.querySelector('.js-bill-total');
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -128,6 +136,7 @@ submitAddItemButtonElement.addEventListener('click', () => {
     itemNameInputElement.value = '';
     itemCostInputElement.value = '';
     generateBillItemHTML();
+    generateBillTotalHTML();
 });
 
 submitSplitBillButton.addEventListener('click', () => {
