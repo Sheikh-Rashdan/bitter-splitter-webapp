@@ -99,6 +99,7 @@ submitCreateGroupButtonElement.addEventListener('click', () => {
         alert('Group Name Already Exists!');
         groupNameInputElement.classList.add('failure-border');
         groupNameInputElement.focus();
+        return;
     }
 
     let selectedMemberNames = memberNames.slice(0, numberOfPeople);
