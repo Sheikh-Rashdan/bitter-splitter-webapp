@@ -51,3 +51,7 @@
 .bill-card:hover {
   background-color: rgba(from white r g b / 0.05);
 }
+
+.bill-card i {
+  vertical-align: middle;
+}

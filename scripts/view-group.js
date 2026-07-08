@@ -27,7 +27,7 @@ function generateBillHTML() {
             generatedHTML = `
                 <div class="bill-card js-bill-card" data-bill-id="${bill.id}">
                     <p>${bill.date}</p>
-                    <p>₹ ${formatAmount(bill.total)} <i class="bx bx-chevrons-right" style="vertical-align: middle;"></i></p>
+                    <p>₹ ${formatAmount(bill.total)} <i class="bx bx-chevrons-right"></i></p>
                 </div>
             ` + generatedHTML;
         });
