@@ -84,6 +84,14 @@ export function editBillItem(bill, billItem, newAmount) {
     saveGroups();
 }
 
+export function toggleIncludeMember(billItem, memberName) {
+    if (billItem.splitBy.includes(memberName)) {
+        billItem.splitBy.splice(billItem.splitBy.indexOf(memberName), 1);
+    } else {
+        billItem.splitBy.push(memberName);
+    }
+}
+
 function loadGroups() {
     return JSON.parse(localStorage.getItem(GROUPS_KEY)) ?? [];
 }

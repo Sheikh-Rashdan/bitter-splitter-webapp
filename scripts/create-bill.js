@@ -1,4 +1,4 @@
-import { getGroupbyName, createBillbyName } from "../scripts/groups.js";
+import { getGroupbyName, createBillbyName, toggleIncludeMember } from "../scripts/groups.js";
 import { formatAmount } from "../scripts/utils.js";
 
 // data
@@ -11,14 +11,6 @@ let currentItem = {
     splitBy: []
 }
 
-function toggleIncludeMember(memberName) {
-    if (currentItem.splitBy.includes(memberName)) {
-        currentItem.splitBy.splice(currentItem.splitBy.indexOf(memberName), 1);
-    } else {
-        currentItem.splitBy.push(memberName);
-    }
-}
-
 function generateMemberHTML() {
     let generatedHTML = '';
     group.members.forEach((member) => {
@@ -28,7 +20,7 @@ function generateMemberHTML() {
 
     document.querySelectorAll('.js-member-card').forEach((element) => {
         element.addEventListener('click', () => {
-            toggleIncludeMember(element.dataset.memberName);
+            toggleIncludeMember(currentItem, element.dataset.memberName);
             updateMemberCards();
         });
     });
