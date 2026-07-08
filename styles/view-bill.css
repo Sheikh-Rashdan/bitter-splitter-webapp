@@ -197,3 +197,14 @@
 .edit-info-button.disabled:active {
   scale: 1;
 }
+
+.opted-item-container {
+  max-height: 30vh;
+  overflow-y: scroll;
+  mask-image: linear-gradient(to bottom, transparent, white 10%, white 90%, transparent);
+  padding: 0.5rem 0;
+}
+
+.opted-item-container p {
+  font-size: 1.2rem;
+}
