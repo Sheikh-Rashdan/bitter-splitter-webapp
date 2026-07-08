@@ -45,7 +45,7 @@ function generateMemberHTML() {
         generatedHTML += `
             <div class="member-card" data-member-name="${splitAmount.memberName}">
                 <p>${splitAmount.memberName}</p>
-                <p>₹ ${formatAmount(splitAmount.amount)} <i class="bx bx-chevrons-right"></i></p>
+                <p>₹ ${formatAmount(splitAmount.amount)} <i class="bx bxs-chevrons-right"></i></p>
             </div>
         `;
     });
@@ -83,7 +83,7 @@ function generateBillItemHTML() {
         generatedHTML += `
         <div class="bill-item-card" data-item-name="${billItem.name}"">
             <p>${billItem.name}</p>
-            <p>₹ ${formatAmount(billItem.cost)} <i class="bx bx-chevrons-right"></i></p>
+            <p>₹ ${formatAmount(billItem.cost)} <i class="bx bxs-chevrons-right"></i></p>
         </div>
     `;
     });
@@ -121,7 +121,7 @@ function generateBillItemHTML() {
                         <input type="number" class="edit-input js-edit-cost-input">
                     </div>
                 </div>
-                <button class="edit-info-button js-edit-info-button disabled">Modify<i class="bx bx-edit-alt"></i></button>
+                <button class="edit-info-button js-edit-info-button disabled">Modify<i class="bx bxs-edit-alt"></i></button>
             `;
 
             const editNameInput = document.querySelector('.js-edit-name-input');
