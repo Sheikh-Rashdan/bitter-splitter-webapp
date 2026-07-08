@@ -139,6 +139,12 @@ function generateBillItemHTML() {
                         return;
                     }
                 });
+                backupSplitBy.forEach((memberName) => {
+                    if (!billItem.splitBy.includes(memberName)) {
+                        splitByBool = false;
+                        return;
+                    }
+                });
                 if (editNameInput.value == billItem.name && editCostInput.value == billItem.cost && splitByBool) {
                     editInfoButton.classList.add('disabled');
                 } else {
