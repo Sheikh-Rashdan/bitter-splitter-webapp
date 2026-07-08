@@ -127,17 +127,22 @@ function generateBillItemHTML() {
             const editNameInput = document.querySelector('.js-edit-name-input');
             const editCostInput = document.querySelector('.js-edit-cost-input');
             const editInfoButton = document.querySelector('.js-edit-info-button');
+            const backupSplitBy = structuredClone(billItem.splitBy)
 
-            editCostInput.value = billItem.cost;
-            editCostInput.addEventListener('input', () => {
-                editCostInput.classList.remove('failure-border');
-                editInfoButton.classList.remove('disabled');
-            });
-            editNameInput.value = billItem.name;
-            editNameInput.addEventListener('input', () => {
-                editNameInput.classList.remove('failure-border');
-                editInfoButton.classList.remove('disabled');
-            });
+            function updateModifyButton() {
+                let splitByBool = true;
+                billItem.splitBy.forEach((memberName) => {
+                    if (!backupSplitBy.includes(memberName)) {
+                        splitByBool = false;
+                        return;
+                    }
+                });
+                if (editNameInput.value == billItem.name && editCostInput.value == billItem.cost && splitByBool) {
+                    editInfoButton.classList.add('disabled');
+                } else {
+                    editInfoButton.classList.remove('disabled');
+                }
+            }
 
             function updateEditInfoCards() {
                 document.querySelectorAll(".js-edit-opt").forEach((element) => {
@@ -149,13 +154,23 @@ function generateBillItemHTML() {
                 });
             }
 
+            editCostInput.value = billItem.cost;
+            editCostInput.addEventListener('input', () => {
+                editCostInput.classList.remove('failure-border');
+                updateModifyButton();
+            });
+            editNameInput.value = billItem.name;
+            editNameInput.addEventListener('input', () => {
+                editNameInput.classList.remove('failure-border');
+                updateModifyButton();
+            });
+
             document.querySelectorAll(".js-edit-opt").forEach((element) => {
                 element.addEventListener('click', () => {
-                    editInfoButton.classList.remove('disabled');
-                    const backupSplitBy = structuredClone(billItem.splitBy)
                     if (!clearEditInfoName) clearEditInfoName = () => { billItem.splitBy = backupSplitBy; }
                     toggleIncludeMember(billItem, element.dataset.memberName);
                     updateEditInfoCards();
+                    updateModifyButton();
                 });
             })
             updateEditInfoCards();
@@ -186,7 +201,7 @@ function generateBillItemHTML() {
                     alert('Select Members To Split!');
                     return;
                 }
-                while (!checkUniqueName(bill.items, newName)) {
+                while (newName != billItem.name && !checkUniqueName(bill.items, newName)) {
                     newName += '~';
                 }
                 editBillItem(bill, billItem, newAmount, newName);
