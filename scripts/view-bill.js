@@ -56,7 +56,8 @@ function generateMemberHTML() {
         memberCard.addEventListener('click', () => {
             billOptInfoBg.classList.remove('hidden');
             const memberName = memberCard.dataset.memberName;
-            const optedItems = memberCard.dataset.optedItems.replaceAll(",", " • ");
+            let optedItems = memberCard.dataset.optedItems.replaceAll(",", " • ");
+            if (optedItems === "undefined") optedItems = "Nothing";
             billOptInfoContainer.innerHTML = `
                 <b style="text-align: center;">${memberName}</b>
                 <i style="font-size: 12px;">Opted for</i>
@@ -144,7 +145,8 @@ shareButtonElement.addEventListener('click', () => {
     textToCopy += '----------------------------------\n';
     textToCopy += '*People*\n';
     splitAmounts.forEach((splitAmount) => {
-        const optedItemsString = optedItems[splitAmount.memberName].toString().replaceAll(",", ", ");
+        const optedItemsValue = optedItems[splitAmount.memberName] || "Nothing";
+        const optedItemsString = optedItemsValue.toString().replaceAll(",", ", ");
         textToCopy += `• ${splitAmount.memberName} -> \`${optedItemsString}\`\n`;
     });
     textToCopy += '----------------------------------\n';
