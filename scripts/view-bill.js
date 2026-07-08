@@ -1,4 +1,4 @@
-import { getGroupbyName, getBillbyBillId, removeBillbyId, getItemByName, calculateBillTotal, editBillItem } from '../scripts/groups.js';
+import { getGroupbyName, getBillbyBillId, removeBillbyId, getItemByName, calculateBillTotal, editBillItem, toggleIncludeMember } from '../scripts/groups.js';
 import { formatAmount } from '../scripts/utils.js';
 
 // data
@@ -67,6 +67,7 @@ function generateMemberHTML() {
     });
 }
 
+let clearEditInfoName = null;
 function generateBillItemHTML() {
     let generatedHTML = '';
     bill.items.forEach((billItem) => {
@@ -83,13 +84,24 @@ function generateBillItemHTML() {
     document.querySelectorAll(".bill-item-card").forEach(billItemCard => {
         billItemCard.addEventListener('click', () => {
             billOptInfoBg.classList.remove('hidden');
+
             const itemName = billItemCard.dataset.itemName;
             const billItem = getItemByName(bill, itemName)
-            const splitByNames = (billItem.splitBy || "Nothing").toString().replaceAll(",", " • ");
+            const splitByNames = (billItem.splitBy || "Nothing").toString().split(",");
+
             billOptInfoContainer.innerHTML = `
                 <b>${itemName}</b>
                 <span class="smaller">Split by</span>
-                <p>${splitByNames}</p>
+            `;
+
+            let editInfoNameContainerHTML = `<div class="edit-info-name-container">`;
+            group.members.forEach((member) => {
+                editInfoNameContainerHTML += `<div class="edit-info-name js-edit-info-name" data-member-name="${member}">${member}</div>`;
+            });
+            editInfoNameContainerHTML += `</div>`;
+
+            billOptInfoContainer.innerHTML += editInfoNameContainerHTML;
+            billOptInfoContainer.innerHTML += `
                 <div class="edit-info-input-container">
                     <p class="edit-info-input-label">Edit Cost:</p>
                     <input type="number" class="edit-info-input">
@@ -105,11 +117,35 @@ function generateBillItemHTML() {
                 editInfoInput.classList.remove('failure-border');
             });
 
+            function updateEditInfoCards() {
+                document.querySelectorAll(".js-edit-info-name").forEach((element) => {
+                    if (billItem.splitBy.includes(element.dataset.memberName)) {
+                        element.classList.add("selected");
+                    } else {
+                        element.classList.remove("selected");
+                    }
+                });
+            }
+
+            document.querySelectorAll(".js-edit-info-name").forEach((element) => {
+                element.addEventListener('click', () => {
+                    const backupSplitBy = structuredClone(billItem.splitBy)
+                    if (!clearEditInfoName) clearEditInfoName = () => { billItem.splitBy = backupSplitBy; }
+                    toggleIncludeMember(billItem, element.dataset.memberName);
+                    updateEditInfoCards();
+                });
+            })
+            updateEditInfoCards();
+
             editInfoButton.addEventListener('click', () => {
                 const newAmount = formatAmount(editInfoInput.value);
                 if (!newAmount) {
                     editInfoInput.classList.add('failure-border');
                     editInfoInput.focus();
+                    return;
+                }
+                if (billItem.splitBy.length === 0) {
+                    alert('Select Members To Split!');
                     return;
                 }
                 editBillItem(bill, billItem, newAmount)
@@ -157,6 +193,8 @@ billOptInfoBg.addEventListener('click', (event) => {
     if (event.target !== event.currentTarget) return;
 
     billOptInfoBg.classList.add('hidden');
+    if (clearEditInfoName) clearEditInfoName();
+    clearEditInfoName = null;
 });
 
 shareButtonElement.addEventListener('click', () => {

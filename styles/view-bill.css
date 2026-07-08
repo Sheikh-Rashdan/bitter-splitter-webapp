@@ -148,3 +148,31 @@
 .edit-info-input {
   text-align: center;
 }
+
+.edit-info-name-container {
+  width: 100%;
+  max-height: 30vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  padding: 0.5rem 0;
+  overflow-y: scroll;
+  mask-image: linear-gradient(to bottom, transparent, white 10%, white 90%, transparent);
+}
+
+.edit-info-name {
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 0.625rem;
+  transition: 300ms ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.edit-info-name.selected {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
