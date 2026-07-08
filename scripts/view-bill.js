@@ -43,7 +43,7 @@ function generateMemberHTML() {
 
     splitAmounts.forEach((splitAmount) => {
         generatedHTML += `
-            <div class="member-card" data-member-name="${splitAmount.memberName}" data-opted-items="${optedItems[splitAmount.memberName]}">
+            <div class="member-card" data-member-name="${splitAmount.memberName}">
                 <p>${splitAmount.memberName}</p>
                 <p>₹ ${formatAmount(splitAmount.amount)} <i class="bx bx-chevrons-right"></i></p>
             </div>
@@ -56,12 +56,21 @@ function generateMemberHTML() {
         memberCard.addEventListener('click', () => {
             billOptInfoBg.classList.remove('hidden');
             const memberName = memberCard.dataset.memberName;
-            let optedItems = memberCard.dataset.optedItems.replaceAll(",", " • ");
-            if (optedItems === "undefined") optedItems = "Nothing";
+            let memberOptedItems = optedItems[memberName];
+            let memberOptedHTML = `<div class="opted-item-container">`;
+            if (!memberOptedItems) memberOptedHTML = "Nothing";
+            else {
+                memberOptedItems.forEach((optedItemName) => {
+                    const optedItem = getItemByName(bill, optedItemName);
+                    const splitCost = formatAmount(optedItem.cost / optedItem.splitBy.length);
+                    memberOptedHTML += `<p>${optedItem.name} - ₹ ${splitCost}</p>`;
+                });
+                memberOptedHTML += `</div>`;
+            }
             billOptInfoContainer.innerHTML = `
                 <b>${memberName}</b>
                 <span class="smaller">Opted for</span>
-                <p>${optedItems}</p>
+                ${memberOptedHTML}
                 `;
         });
     });
