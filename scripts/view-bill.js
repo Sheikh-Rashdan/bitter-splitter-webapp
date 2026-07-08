@@ -142,8 +142,15 @@ function generateBillItemHTML() {
             editInfoButton.addEventListener('click', () => {
                 if (editInfoButton.classList.contains("disabled")) return;
 
+                if (!editInfoInput.value) {
+                    editInfoInput.classList.add('failure-border');
+                    editInfoInput.focus();
+                    return;
+                }
+
                 const newAmount = formatAmount(editInfoInput.value);
-                if (!newAmount) {
+                if (newAmount <= 0) {
+                    alert("Item Cost Must Be Positive!")
                     editInfoInput.classList.add('failure-border');
                     editInfoInput.focus();
                     return;

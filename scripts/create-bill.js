@@ -106,6 +106,12 @@ submitAddItemButtonElement.addEventListener('click', () => {
     }
     currentItem.cost = Math.round(Number(itemCostInputElement.value) * 100) / 100;
 
+    if (currentItem.cost <= 0) {
+        alert('Item Cost Must Be Positive!');
+        itemCostInputElement.classList.add('failure-border');
+        itemCostInputElement.focus();
+        return;
+    }
     if (currentItem.splitBy.length === 0) {
         alert('Select Members To Split!');
         return;
