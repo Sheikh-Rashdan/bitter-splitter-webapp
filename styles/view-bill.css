@@ -128,15 +128,27 @@
   font-size: 0.75rem;
 }
 
-.edit-info-input-container {
-  padding-top: 1rem;
-  position: relative;
+.edit-input-master-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
 }
 
-.edit-info-input-label {
+.edit-input-container {
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.edit-input-label {
   position: absolute;
   left: 0.5rem;
-  top: 0.5rem;
+  top: 0rem;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 0.2rem 0.4rem;
@@ -145,11 +157,11 @@
   border-radius: 10px;
 }
 
-.edit-info-input {
+.edit-input {
   text-align: center;
 }
 
-.edit-info-name-container {
+.edit-opt-container {
   width: 100%;
   max-height: 30vh;
   display: grid;
@@ -160,7 +172,7 @@
   mask-image: linear-gradient(to bottom, transparent, white 10%, white 90%, transparent);
 }
 
-.edit-info-name {
+.edit-opt {
   width: 100%;
   border: 2px solid white;
   border-radius: 10px;
@@ -171,7 +183,7 @@
   text-align: center;
 }
 
-.edit-info-name.selected {
+.edit-opt.selected {
   background-color: white;
   color: black;
   font-weight: bold;

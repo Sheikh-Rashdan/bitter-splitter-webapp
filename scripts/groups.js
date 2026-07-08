@@ -78,8 +78,9 @@ export function getItemByName(bill, name) {
     return itemToReturn;
 }
 
-export function editBillItem(bill, billItem, newAmount) {
+export function editBillItem(bill, billItem, newAmount, newName) {
     billItem.cost = newAmount;
+    billItem.name = newName;
     bill.total = calculateBillTotal(bill.items);
     saveGroups();
 }

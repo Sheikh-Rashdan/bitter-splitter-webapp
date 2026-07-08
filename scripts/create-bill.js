@@ -1,5 +1,5 @@
 import { getGroupbyName, createBillbyName, toggleIncludeMember } from "../scripts/groups.js";
-import { formatAmount } from "../scripts/utils.js";
+import { formatAmount, checkUniqueName } from "../scripts/utils.js";
 
 // data
 const groupName = new URLSearchParams(location.search).get('groupName');
@@ -118,16 +118,8 @@ submitAddItemButtonElement.addEventListener('click', () => {
     }
 
     currentItem.name = itemNameInputElement.value !== '' ? itemNameInputElement.value : `Item ${billItems.length + 1}`;
-    let isNameUnique = false;
-    while (!isNameUnique) {
-        isNameUnique = true;
-        for (let i = 0; i < billItems.length; i++) {
-            let billItem = billItems[i];
-            if (billItem.name === currentItem.name) {
-                isNameUnique = false;
-                currentItem.name += '~';
-            }
-        }
+    while (!checkUniqueName(billItems, currentItem.name)) {
+        currentItem.name += '~';
     }
 
     billItems.push(structuredClone(currentItem));
