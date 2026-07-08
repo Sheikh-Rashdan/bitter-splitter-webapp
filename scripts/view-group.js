@@ -1,4 +1,5 @@
 import { getGroupbyName, removeGroup } from "../scripts/groups.js";
+import { formatAmount } from "../scripts/utils.js";
 
 // data
 const groupName = new URLSearchParams(location.search).get('groupName');
@@ -26,7 +27,7 @@ function generateBillHTML() {
             generatedHTML = `
                 <div class="bill-card js-bill-card" data-bill-id="${bill.id}">
                     <p>${bill.date}</p>
-                    <p>₹ ${bill.total}</p>
+                    <p>₹ ${formatAmount(bill.total)}</p>
                 </div>
             ` + generatedHTML;
         });

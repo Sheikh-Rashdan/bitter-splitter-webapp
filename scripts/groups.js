@@ -1,4 +1,5 @@
 import dayjs from 'https://esm.sh/dayjs';
+import { formatAmount } from '../scripts/utils.js';
 
 // data
 const GROUPS_KEY = 'GroupsKey';
@@ -29,6 +30,7 @@ export function createBillbyName(items, name) {
     items.forEach((billItem) => {
         total += billItem.cost;
     });
+    total = formatAmount(total);
 
     if (!crypto.randomUUID) {
         function uuidFallback() {

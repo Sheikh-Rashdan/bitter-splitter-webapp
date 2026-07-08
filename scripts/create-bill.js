@@ -1,4 +1,5 @@
 import { getGroupbyName, createBillbyName } from "../scripts/groups.js";
+import { formatAmount } from "../scripts/utils.js";
 
 // data
 const groupName = new URLSearchParams(location.search).get('groupName');
@@ -53,7 +54,7 @@ function generateBillItemHTML() {
             generatedHTML += `
             <div class="bill-item-card js-bill-item-card">
                 <p>${billItem.name}</p>
-                <p>₹ ${billItem.cost}</p>
+                <p>₹ ${formatAmount(billItem.cost)}</p>
                 <button class="plain-button delete-bill-item-button js-delete-bill-item-button" data-item-name="${billItem.name}">
                     <i class='bx  bxs-x'></i> 
                 </button>
@@ -79,7 +80,7 @@ function generateBillItemHTML() {
 function generateBillTotalHTML() {
     let total = 0;
     billItems.forEach(item => total += item.cost);
-    billTotal.innerHTML = `Bill - ₹${total}`;
+    billTotal.innerHTML = `Bill - ₹${formatAmount(total)}`;
 }
 
 // DOM elements

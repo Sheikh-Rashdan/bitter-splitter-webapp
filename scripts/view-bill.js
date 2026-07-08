@@ -1,4 +1,5 @@
 import { getGroupbyName, getBillbyBillId, removeBillbyId } from '../scripts/groups.js';
+import { formatAmount } from '../scripts/utils.js';
 
 // data
 const searchParams = new URLSearchParams(location.search);
@@ -39,7 +40,7 @@ function generateMemberHTML() {
         generatedHTML += `
             <div class="member-card">
                 <p>${splitAmount.memberName}</p>
-                <p>₹ ${splitAmount.amount}</p>
+                <p>₹ ${formatAmount(splitAmount.amount)}</p>
             </div>
         `;
     });
@@ -53,7 +54,7 @@ function generateBillItemHTML() {
         generatedHTML += `
         <div class="bill-item-card">
             <p>${billItem.name}</p>
-            <p>₹ ${billItem.cost}</p>
+            <p>₹ ${formatAmount(billItem.cost)}</p>
         </div>
     `;
     });
@@ -71,7 +72,7 @@ const shareButtonElement = document.querySelector('.js-share-button');
 
 // HTML
 billDateElement.innerHTML = bill.date;
-billLabelElement.innerHTML = `Bill - ₹ ${bill.total}`;
+billLabelElement.innerHTML = `Bill - ₹ ${formatAmount(bill.total)}`;
 generateMemberHTML();
 generateBillItemHTML();
 
@@ -95,12 +96,12 @@ shareButtonElement.addEventListener('click', () => {
     textToCopy += '----------------\n';
     textToCopy += 'Item name - Cost\n';
     bill.items.forEach((billItem) => {
-        textToCopy += `${billItem.name} - ₹ ${billItem.cost}\n`;
+        textToCopy += `${billItem.name} - ₹ ${formatAmount(billItem.cost)}\n`;
     });
     textToCopy += '----------------\n';
     textToCopy += 'Person - Amount\n';
     splitAmounts.forEach((splitAmount) => {
-        textToCopy += `${splitAmount.memberName} - ₹ ${splitAmount.amount}\n`;
+        textToCopy += `${splitAmount.memberName} - ₹ ${formatAmount(splitAmount.amount)}\n`;
     });
     textToCopy += '----------------\n';
 
