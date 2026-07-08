@@ -14,7 +14,8 @@ if (!bill) {
 }
 
 // functions
-let splitAmounts = [];
+const splitAmounts = [];
+const optedItems = {};
 function generateMemberHTML() {
     let generatedHTML = '';
 
@@ -25,7 +26,6 @@ function generateMemberHTML() {
         });
     });
 
-    let optedItems = {};
     bill.items.forEach((billItem) => {
         for (let i = 0; i < splitAmounts.length; i++) {
             let splitAmount = splitAmounts[i];
@@ -55,8 +55,8 @@ function generateMemberHTML() {
     document.querySelectorAll(".member-card").forEach(memberCard => {
         memberCard.addEventListener('click', () => {
             billOptInfoBg.classList.remove('hidden');
-            let memberName = memberCard.dataset.memberName;
-            let optedItems = memberCard.dataset.optedItems.replaceAll(",", " • ");
+            const memberName = memberCard.dataset.memberName;
+            const optedItems = memberCard.dataset.optedItems.replaceAll(",", " • ");
             billOptInfoContainer.innerHTML = `
                 <b style="text-align: center;">${memberName}</b>
                 <i style="font-size: 12px;">Opted for</i>
@@ -82,8 +82,8 @@ function generateBillItemHTML() {
     document.querySelectorAll(".bill-item-card").forEach(billItemCard => {
         billItemCard.addEventListener('click', () => {
             billOptInfoBg.classList.remove('hidden');
-            let splitByItem = billItemCard.dataset.itemName;
-            let splitByNames = billItemCard.dataset.splitBy.replaceAll(",", " • ");
+            const splitByItem = billItemCard.dataset.itemName;
+            const splitByNames = billItemCard.dataset.splitBy.replaceAll(",", " • ");
             billOptInfoContainer.innerHTML = `
                 <b style="text-align: center;">${splitByItem}</b>
                 <i style="font-size: 12px;">Split by</i>
@@ -131,17 +131,23 @@ billOptInfoBg.addEventListener('click', () => {
 shareButtonElement.addEventListener('click', () => {
     let textToCopy = 'BitterSplitter Bill\n';
     textToCopy += `${bill.date}\n`;
-    textToCopy += '----------------\n';
-    textToCopy += 'Item name - Cost\n';
-    bill.items.forEach((billItem) => {
-        textToCopy += `${billItem.name} - ₹ ${formatAmount(billItem.cost)}\n`;
-    });
-    textToCopy += '----------------\n';
-    textToCopy += 'Person - Amount\n';
+    textToCopy += '----------------------------------\n';
+    textToCopy += '*Summary*\n';
     splitAmounts.forEach((splitAmount) => {
-        textToCopy += `${splitAmount.memberName} - ₹ ${formatAmount(splitAmount.amount)}\n`;
+        textToCopy += `• ${splitAmount.memberName}: ₹ ${formatAmount(splitAmount.amount)}\n`;
     });
-    textToCopy += '----------------\n';
+    textToCopy += '----------------------------------\n';
+    textToCopy += '*Items*\n';
+    bill.items.forEach((billItem) => {
+        textToCopy += `• ${billItem.name} - ₹ ${formatAmount(billItem.cost)}\n`;
+    });
+    textToCopy += '----------------------------------\n';
+    textToCopy += '*People*\n';
+    splitAmounts.forEach((splitAmount) => {
+        const optedItemsString = optedItems[splitAmount.memberName].toString().replaceAll(",", ", ");
+        textToCopy += `• ${splitAmount.memberName} -> \`${optedItemsString}\`\n`;
+    });
+    textToCopy += '----------------------------------\n';
 
     if (!navigator.clipboard) {
         alert('Failed To Share!');
