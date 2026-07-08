@@ -25,6 +25,7 @@ function generateMemberHTML() {
         });
     });
 
+    let optedItems = {};
     bill.items.forEach((billItem) => {
         for (let i = 0; i < splitAmounts.length; i++) {
             let splitAmount = splitAmounts[i];
@@ -32,33 +33,64 @@ function generateMemberHTML() {
                 splitAmount.amount += billItem.cost / billItem.splitBy.length;
             }
         }
+        billItem.splitBy.forEach((name) => {
+            if (optedItems[name]) optedItems[name].push(billItem.name);
+            else optedItems[name] = [billItem.name];
+        });
     });
 
-    splitAmounts.forEach(splitAmount => splitAmount.amount = Math.round(splitAmount.amount * 100) / 100);
+    splitAmounts.forEach(splitAmount => splitAmount.amount = formatAmount(splitAmount.amount));
 
     splitAmounts.forEach((splitAmount) => {
         generatedHTML += `
-            <div class="member-card">
+            <div class="member-card" data-member-name="${splitAmount.memberName}" data-opted-items="${optedItems[splitAmount.memberName]}">
                 <p>${splitAmount.memberName}</p>
-                <p>₹ ${formatAmount(splitAmount.amount)}</p>
+                <p>₹ ${formatAmount(splitAmount.amount)} <i class="bx bx-chevrons-right" style="vertical-align: middle;"></i></p>
             </div>
         `;
     });
 
     memberCardContainerElement.innerHTML = generatedHTML;
+
+    document.querySelectorAll(".member-card").forEach(memberCard => {
+        memberCard.addEventListener('click', () => {
+            billOptInfoBg.classList.remove('hidden');
+            let memberName = memberCard.dataset.memberName;
+            let optedItems = memberCard.dataset.optedItems.replaceAll(",", " • ");
+            billOptInfoContainer.innerHTML = `
+                <b style="text-align: center;">${memberName}</b>
+                <i style="font-size: 12px;">Opted for</i>
+                <span style="text-align: center;">${optedItems}</span>
+            `;
+        });
+    });
 }
 
 function generateBillItemHTML() {
     let generatedHTML = '';
     bill.items.forEach((billItem) => {
         generatedHTML += `
-        <div class="bill-item-card">
+        <div class="bill-item-card" data-split-by="${billItem.splitBy}" data-item-name="${billItem.name}"">
             <p>${billItem.name}</p>
-            <p>₹ ${formatAmount(billItem.cost)}</p>
+            <p>₹ ${formatAmount(billItem.cost)} <i class="bx bx-chevrons-right" style="vertical-align: middle;"></i></p>
         </div>
     `;
     });
+
     billItemCardContainerElement.innerHTML = generatedHTML;
+
+    document.querySelectorAll(".bill-item-card").forEach(billItemCard => {
+        billItemCard.addEventListener('click', () => {
+            billOptInfoBg.classList.remove('hidden');
+            let splitByItem = billItemCard.dataset.itemName;
+            let splitByNames = billItemCard.dataset.splitBy.replaceAll(",", " • ");
+            billOptInfoContainer.innerHTML = `
+                <b style="text-align: center;">${splitByItem}</b>
+                <i style="font-size: 12px;">Split by</i>
+                <span style="text-align: center;">${splitByNames}</span>
+            `;
+        });
+    });
 }
 
 // DOM elements
@@ -69,6 +101,8 @@ const memberCardContainerElement = document.querySelector('.js-member-card-conta
 const deleteBillButtonElement = document.querySelector('.js-delete-bill-button');
 const backButtonElement = document.querySelector('.js-back-button');
 const shareButtonElement = document.querySelector('.js-share-button');
+const billOptInfoBg = document.querySelector('.js-bill-opt-info-bg');
+const billOptInfoContainer = document.querySelector('.js-bill-opt-info-container');
 
 // HTML
 billDateElement.innerHTML = bill.date;
@@ -88,6 +122,10 @@ backButtonElement.addEventListener('click', () => {
     setTimeout(() => {
         location.assign(`view-group.html?groupName=${groupName}`);
     }, 300);
+});
+
+billOptInfoBg.addEventListener('click', () => {
+    billOptInfoBg.classList.add('hidden');
 });
 
 shareButtonElement.addEventListener('click', () => {

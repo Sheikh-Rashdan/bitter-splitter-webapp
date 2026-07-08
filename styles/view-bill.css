@@ -25,6 +25,11 @@
   text-align: left;
 }
 
+.member-card:hover {
+  transform: translateY(-0.1rem);
+  background-color: rgba(255 255 255 / 0.05);
+}
+
 .member-card p {
   flex: 1 1 0
 }
@@ -66,4 +71,9 @@
 
 .bill-item-card p:last-of-type {
   text-align: right;
+}
+
+.bill-item-card:hover {
+  transform: translateY(-0.1rem);
+  background-color: rgba(255 255 255 / 0.05);
 }
