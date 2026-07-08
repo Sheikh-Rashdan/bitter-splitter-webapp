@@ -106,7 +106,7 @@ function generateBillItemHTML() {
                     <p class="edit-info-input-label">Edit Cost:</p>
                     <input type="number" class="edit-info-input">
                 </div>
-                <button class="edit-info-button">Modify<i class="bx bx-edit-alt"></i></button>
+                <button class="edit-info-button disabled">Modify<i class="bx bx-edit-alt"></i></button>
             `;
 
             const editInfoInput = document.querySelector('.edit-info-input');
@@ -115,6 +115,7 @@ function generateBillItemHTML() {
             editInfoInput.value = billItem.cost;
             editInfoInput.addEventListener('input', () => {
                 editInfoInput.classList.remove('failure-border');
+                editInfoButton.classList.remove('disabled');
             });
 
             function updateEditInfoCards() {
@@ -129,6 +130,7 @@ function generateBillItemHTML() {
 
             document.querySelectorAll(".js-edit-info-name").forEach((element) => {
                 element.addEventListener('click', () => {
+                    editInfoButton.classList.remove('disabled');
                     const backupSplitBy = structuredClone(billItem.splitBy)
                     if (!clearEditInfoName) clearEditInfoName = () => { billItem.splitBy = backupSplitBy; }
                     toggleIncludeMember(billItem, element.dataset.memberName);
@@ -138,6 +140,8 @@ function generateBillItemHTML() {
             updateEditInfoCards();
 
             editInfoButton.addEventListener('click', () => {
+                if (editInfoButton.classList.contains("disabled")) return;
+
                 const newAmount = formatAmount(editInfoInput.value);
                 if (!newAmount) {
                     editInfoInput.classList.add('failure-border');
