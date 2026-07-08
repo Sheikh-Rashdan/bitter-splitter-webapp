@@ -34,6 +34,10 @@
   flex: 1 1 0
 }
 
+.member-card i {
+  vertical-align: middle;
+}
+
 .member-card p:last-of-type {
   text-align: right;
 }
@@ -76,4 +80,71 @@
 .bill-item-card:hover {
   transform: translateY(-0.1rem);
   background-color: rgba(255 255 255 / 0.05);
+}
+
+.bill-item-card i {
+  vertical-align: middle;
+}
+
+.bill-opt-info-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100lvh;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255 255 255 / 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.bill-opt-info-bg.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bill-opt-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 3rem;
+  gap: 0.5rem;
+  min-width: 50vw;
+  max-width: 75vw;
+  max-height: 55vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+.bill-opt-info-container .smaller {
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+.edit-info-input-container {
+  padding-top: 1rem;
+  position: relative;
+}
+
+.edit-info-input-label {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.2rem 0.4rem;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.edit-info-input {
+  text-align: center;
 }

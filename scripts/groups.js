@@ -23,14 +23,18 @@ export function getGroupbyName(name) {
     }
 }
 
-export function createBillbyName(items, name) {
-    let group = getGroupbyName(name);
-
+export function calculateBillTotal(items) {
     let total = 0;
     items.forEach((billItem) => {
         total += billItem.cost;
     });
-    total = formatAmount(total);
+    return formatAmount(total);
+}
+
+export function createBillbyName(items, name) {
+    let group = getGroupbyName(name);
+
+    const total = calculateBillTotal(items);
 
     if (!crypto.randomUUID) {
         function uuidFallback() {
@@ -61,6 +65,23 @@ export function removeBillbyId(group, billId) {
 
 export function getBillbyBillId(group, billId) {
     return group.bills[group.bills.findIndex(bill => bill.id === billId)];
+}
+
+export function getItemByName(bill, name) {
+    let itemToReturn;
+    bill.items.forEach((item) => {
+        if (item.name === name) {
+            itemToReturn = item;
+            return
+        }
+    });
+    return itemToReturn;
+}
+
+export function editBillItem(bill, billItem, newAmount) {
+    billItem.cost = newAmount;
+    bill.total = calculateBillTotal(bill.items);
+    saveGroups();
 }
 
 function loadGroups() {

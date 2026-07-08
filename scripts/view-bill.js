@@ -1,4 +1,4 @@
-import { getGroupbyName, getBillbyBillId, removeBillbyId } from '../scripts/groups.js';
+import { getGroupbyName, getBillbyBillId, removeBillbyId, getItemByName, calculateBillTotal, editBillItem } from '../scripts/groups.js';
 import { formatAmount } from '../scripts/utils.js';
 
 // data
@@ -45,7 +45,7 @@ function generateMemberHTML() {
         generatedHTML += `
             <div class="member-card" data-member-name="${splitAmount.memberName}" data-opted-items="${optedItems[splitAmount.memberName]}">
                 <p>${splitAmount.memberName}</p>
-                <p>₹ ${formatAmount(splitAmount.amount)} <i class="bx bx-chevrons-right" style="vertical-align: middle;"></i></p>
+                <p>₹ ${formatAmount(splitAmount.amount)} <i class="bx bx-chevrons-right"></i></p>
             </div>
         `;
     });
@@ -59,10 +59,10 @@ function generateMemberHTML() {
             let optedItems = memberCard.dataset.optedItems.replaceAll(",", " • ");
             if (optedItems === "undefined") optedItems = "Nothing";
             billOptInfoContainer.innerHTML = `
-                <b style="text-align: center;">${memberName}</b>
-                <i style="font-size: 12px;">Opted for</i>
-                <span style="text-align: center;">${optedItems}</span>
-            `;
+                <b>${memberName}</b>
+                <span class="smaller">Opted for</span>
+                <p>${optedItems}</p>
+                `;
         });
     });
 }
@@ -71,9 +71,9 @@ function generateBillItemHTML() {
     let generatedHTML = '';
     bill.items.forEach((billItem) => {
         generatedHTML += `
-        <div class="bill-item-card" data-split-by="${billItem.splitBy}" data-item-name="${billItem.name}"">
+        <div class="bill-item-card" data-item-name="${billItem.name}"">
             <p>${billItem.name}</p>
-            <p>₹ ${formatAmount(billItem.cost)} <i class="bx bx-chevrons-right" style="vertical-align: middle;"></i></p>
+            <p>₹ ${formatAmount(billItem.cost)} <i class="bx bx-chevrons-right"></i></p>
         </div>
     `;
     });
@@ -83,13 +83,40 @@ function generateBillItemHTML() {
     document.querySelectorAll(".bill-item-card").forEach(billItemCard => {
         billItemCard.addEventListener('click', () => {
             billOptInfoBg.classList.remove('hidden');
-            const splitByItem = billItemCard.dataset.itemName;
-            const splitByNames = billItemCard.dataset.splitBy.replaceAll(",", " • ");
+            const itemName = billItemCard.dataset.itemName;
+            const billItem = getItemByName(bill, itemName)
+            const splitByNames = (billItem.splitBy || "Nothing").toString().replaceAll(",", " • ");
             billOptInfoContainer.innerHTML = `
-                <b style="text-align: center;">${splitByItem}</b>
-                <i style="font-size: 12px;">Split by</i>
-                <span style="text-align: center;">${splitByNames}</span>
+                <b>${itemName}</b>
+                <span class="smaller">Split by</span>
+                <p>${splitByNames}</p>
+                <div class="edit-info-input-container">
+                    <p class="edit-info-input-label">Edit Cost:</p>
+                    <input type="number" class="edit-info-input">
+                </div>
+                <button class="edit-info-button">Modify<i class="bx bx-edit-alt"></i></button>
             `;
+
+            const editInfoInput = document.querySelector('.edit-info-input');
+            const editInfoButton = document.querySelector('.edit-info-button');
+
+            editInfoInput.value = billItem.cost;
+            editInfoInput.addEventListener('input', () => {
+                editInfoInput.classList.remove('failure-border');
+            });
+
+            editInfoButton.addEventListener('click', () => {
+                const newAmount = formatAmount(editInfoInput.value);
+                if (!newAmount) {
+                    editInfoInput.classList.add('failure-border');
+                    editInfoInput.focus();
+                    return;
+                }
+                editBillItem(bill, billItem, newAmount)
+                setTimeout(() => {
+                    location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
+                }, 300);
+            });
         });
     });
 }
@@ -125,7 +152,10 @@ backButtonElement.addEventListener('click', () => {
     }, 300);
 });
 
-billOptInfoBg.addEventListener('click', () => {
+billOptInfoBg.addEventListener('click', (event) => {
+
+    if (event.target !== event.currentTarget) return;
+
     billOptInfoBg.classList.add('hidden');
 });
 
