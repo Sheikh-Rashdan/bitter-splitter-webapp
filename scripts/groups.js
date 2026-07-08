@@ -85,6 +85,15 @@ export function editBillItem(bill, billItem, newAmount, newName) {
     saveGroups();
 }
 
+export function deleteBillItem(bill, billItemToRemove) {
+    const itemToRemoveIndex = bill.items.findIndex((billItem) => {
+        if (billItem.name === billItemToRemove.name) return true;
+    });
+    bill.items.splice(itemToRemoveIndex, 1);
+    bill.total = calculateBillTotal(bill.items);
+    saveGroups();
+}
+
 export function toggleIncludeMember(billItem, memberName) {
     if (billItem.splitBy.includes(memberName)) {
         billItem.splitBy.splice(billItem.splitBy.indexOf(memberName), 1);

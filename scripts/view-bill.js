@@ -1,4 +1,4 @@
-import { getGroupbyName, getBillbyBillId, removeBillbyId, getItemByName, calculateBillTotal, editBillItem, toggleIncludeMember } from '../scripts/groups.js';
+import { getGroupbyName, getBillbyBillId, removeBillbyId, getItemByName, calculateBillTotal, editBillItem, toggleIncludeMember, deleteBillItem } from '../scripts/groups.js';
 import { formatAmount, checkUniqueName } from '../scripts/utils.js';
 
 // data
@@ -122,11 +122,13 @@ function generateBillItemHTML() {
                     </div>
                 </div>
                 <button class="edit-info-button js-edit-info-button disabled">Modify<i class="bx bxs-edit-alt"></i></button>
+                <button class="delete-item-button js-delete-item-button">Delete<i class="bx bxs-trash-x"></i></button>
             `;
 
             const editNameInput = document.querySelector('.js-edit-name-input');
             const editCostInput = document.querySelector('.js-edit-cost-input');
             const editInfoButton = document.querySelector('.js-edit-info-button');
+            const deleteItemButton = document.querySelector('.js-delete-item-button');
             const backupSplitBy = structuredClone(billItem.splitBy)
 
             function updateModifyButton() {
@@ -205,6 +207,13 @@ function generateBillItemHTML() {
                     newName += '~';
                 }
                 editBillItem(bill, billItem, newAmount, newName);
+                setTimeout(() => {
+                    location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
+                }, 300);
+            });
+
+            deleteItemButton.addEventListener('click', () => {
+                deleteBillItem(bill, billItem);
                 setTimeout(() => {
                     location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
                 }, 300);
