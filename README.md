@@ -1,57 +1,56 @@
 # Bitter Splitter
 
-A simple webapp to split bills with different groups of people.
-[View Webapp](https://sheikh-rashdan.github.io/bitter-splitter-webapp/ "Link to Github Pages")
+A lightweight bill-splitting web app that makes it easy to manage shared
+expenses with friends, roommates, classmates, or travel groups.
 
-## Description
+## Deployed Webapp
 
-A simple webapp designed for mobile and desktop that allows users to split bills with multiple groups of people, as well as view and share previous bills.
+https://sheikh-rashdan.github.io/bitter-splitter-webapp/
 
-Made this to practice HTML, CSS and Javascript ✌️
+## Features
 
----
+- Create and save multiple groups of people.
+- Add bills with custom amounts and participants.
+- Automatically split expenses between selected members.
+- View previously created bills and groups.
+- Edit bills after creation
+- Mobile-friendly and desktop-friendly interface.
+- Data persistence using browser storage.
 
-## Gallery
+## Built With
 
-<p align="center">
-  <img width="400px" height="712px" src="https://github.com/user-attachments/assets/45269914-f7cd-49f8-ab49-809ba2e59b7f" />
-</p>
-<p align="center">
-  Ability to create and store multiple groups
-</p>
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
 
-<br><br><br>
+## Storage Structure
 
-<p align="center">
-  <img width="400px" height="830px" src="https://github.com/user-attachments/assets/f2aa00db-b2b1-4856-9678-6f93fad7a22a" />
-</p>
-<p align="center">
-  Creating a group
-</p>
+```JSON
+groups = {
+  {
+  	name: "Group Name",
+  	members: ["Member 1", "Member 2", "Member 3"],
+  	bills: [
+  		{
+  			id: 34ce60a0-dfe4-4cd8-bc7c-a772e40daf95
+  			date: 08/07/26 05:16 PM,
+  			total: 120,
+  			items: [
+  				{
+  					name: "Item 1",
+  					cost: 80,
+  					splitBy: ["Member 1", "Member 2"]
+                },
+              	{
+                  name: "Item 2",
+                  cost: 40,
+                  splitBy: ["Member 2", "Member 3"]
+                }
+            ]
+        }
+    ]
+  }
+}
+```
 
-<br><br><br>
-
-<p align="center">
-  <img width="400px" height="918px" src="https://github.com/user-attachments/assets/d6924430-ebec-4dcf-997b-3a53e62b1366" />
-</p>
-<p align="center">
-  Viewing a group
-</p>
-
-<br><br><br>
-
-<p align="center">
-  <img width="400px" height="1152px" src="https://github.com/user-attachments/assets/11d81fe2-8937-4ecb-ba4d-a5c7bdfc4719" />
-</p>
-<p align="center">
-  Creating a bill
-</p>
-
-<br><br><br>
-
-<p align="center">
-  <img width="400px" height="1340px" src="https://github.com/user-attachments/assets/307b0bfe-6b7b-467c-aaab-bad34d13e4ce" />
-</p>
-<p align="center">
-  Viewing a bill
-</p>
+## Screenshots
