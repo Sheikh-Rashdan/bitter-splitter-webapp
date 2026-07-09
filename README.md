@@ -25,7 +25,7 @@ https://sheikh-rashdan.github.io/bitter-splitter-webapp/
 
 ## Storage Structure
 
-```JSON
+```
 groups = {
   {
   	name: "Group Name",
