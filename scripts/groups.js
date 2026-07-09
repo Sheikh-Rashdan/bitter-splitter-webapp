@@ -78,9 +78,9 @@ export function getItemByName(bill, name) {
     return itemToReturn;
 }
 
-export function editBillItem(bill, billItem, newAmount, newName) {
-    billItem.cost = newAmount;
-    billItem.name = newName;
+export function addBillItem(bill, name, cost, splitBy) {
+    const billItem = { name, cost, splitBy };
+    bill.items.push(billItem);
     bill.total = calculateBillTotal(bill.items);
     saveGroups();
 }
@@ -90,6 +90,13 @@ export function deleteBillItem(bill, billItemToRemove) {
         if (billItem.name === billItemToRemove.name) return true;
     });
     bill.items.splice(itemToRemoveIndex, 1);
+    bill.total = calculateBillTotal(bill.items);
+    saveGroups();
+}
+
+export function editBillItem(bill, billItem, newAmount, newName) {
+    billItem.cost = newAmount;
+    billItem.name = newName;
     bill.total = calculateBillTotal(bill.items);
     saveGroups();
 }

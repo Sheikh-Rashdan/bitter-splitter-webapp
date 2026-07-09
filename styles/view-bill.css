@@ -194,24 +194,24 @@
   font-weight: bold;
 }
 
-.edit-info-button.disabled {
+button.disabled {
   border-color: gray;
   color: gray;
   cursor: default;
 }
 
-.edit-info-button.disabled:hover {
+button.disabled:hover {
   background-color: transparent;
   font-weight: normal;
   letter-spacing: normal;
   gap: 0.4rem;
 }
 
-.edit-info-button.disabled:hover i {
+button.disabled:hover i {
   color: gray;
 }
 
-.edit-info-button.disabled:active {
+button.disabled:active {
   scale: 1;
 }
 

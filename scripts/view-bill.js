@@ -1,4 +1,4 @@
-import { getGroupbyName, getBillbyBillId, removeBillbyId, getItemByName, calculateBillTotal, editBillItem, toggleIncludeMember, deleteBillItem } from '../scripts/groups.js';
+import { getGroupbyName, getBillbyBillId, removeBillbyId, getItemByName, calculateBillTotal, editBillItem, toggleIncludeMember, deleteBillItem, addBillItem } from '../scripts/groups.js';
 import { formatAmount, checkUniqueName } from '../scripts/utils.js';
 
 // data
@@ -234,6 +234,7 @@ const billLabelElement = document.querySelector('.js-bill-label');
 const billItemCardContainerElement = document.querySelector('.js-bill-item-card-container');
 const memberCardContainerElement = document.querySelector('.js-member-card-container');
 const deleteBillButtonElement = document.querySelector('.js-delete-bill-button');
+const addItemButtonElement = document.querySelector('.js-add-item-button');
 const backButtonElement = document.querySelector('.js-back-button');
 const shareButtonElement = document.querySelector('.js-share-button');
 const billOptInfoBg = document.querySelector('.js-bill-opt-info-bg');
@@ -251,6 +252,103 @@ deleteBillButtonElement.addEventListener('click', () => {
     setTimeout(() => {
         location.assign(`./view-group.html?groupName=${groupName}`);
     }, 300);
+});
+
+addItemButtonElement.addEventListener('click', () => {
+    billOptInfoBg.classList.remove('hidden');
+
+    billOptInfoContainer.innerHTML = `
+        <span class="smaller">Split by</span>
+    `;
+
+    let editInfoNameContainerHTML = `<div class="edit-opt-container">`;
+    group.members.forEach((member) => {
+        editInfoNameContainerHTML += `<div class="edit-opt js-add-opt" data-member-name="${member}">${member}</div>`;
+    });
+    editInfoNameContainerHTML += `</div>`;
+
+    billOptInfoContainer.innerHTML += editInfoNameContainerHTML;
+    billOptInfoContainer.innerHTML += `
+        <div class="edit-input-master-container">
+            <div class="edit-input-container">
+                <p class="edit-input-label">Enter Name:</p>
+                <input type="text" class="edit-input js-add-name-input">
+            </div>
+            <div class="edit-input-container">
+                <p class="edit-input-label">Enter Cost:</p>
+                <input type="number" class="edit-input js-add-cost-input">
+            </div>
+        </div>
+        <button class="add-item-button js-create-item-button disabled">Add<i class="bx bxs-check-circle"></i></button>
+        <button class="cancel-item-button js-cancel-item-button">Cancel<i class="bx bxs-x-circle"></i></button>
+    `;
+
+    const addNameInput = document.querySelector('.js-add-name-input');
+    const addCostInput = document.querySelector('.js-add-cost-input');
+    const createItemButton = document.querySelector('.js-create-item-button');
+    const cancelItemButton = document.querySelector('.js-cancel-item-button');
+    const billItem = { "splitBy": [] };
+
+    function updateModifyButton() {
+        if (addNameInput.value && addCostInput.value && billItem.splitBy.length) {
+            createItemButton.classList.remove('disabled');
+        } else {
+            createItemButton.classList.add('disabled');
+        }
+    }
+
+    function updateAddItemCards() {
+        document.querySelectorAll(".js-add-opt").forEach((element) => {
+            if (billItem.splitBy.includes(element.dataset.memberName)) {
+                element.classList.add("selected");
+            } else {
+                element.classList.remove("selected");
+            }
+        });
+    }
+
+    addCostInput.addEventListener('input', () => {
+        addCostInput.classList.remove('failure-border');
+        updateModifyButton();
+    });
+    addNameInput.addEventListener('input', () => {
+        addNameInput.classList.remove('failure-border');
+        updateModifyButton();
+    });
+
+    document.querySelectorAll(".js-add-opt").forEach((element) => {
+        element.addEventListener('click', () => {
+            toggleIncludeMember(billItem, element.dataset.memberName);
+            updateAddItemCards();
+            updateModifyButton();
+        });
+    })
+
+    createItemButton.addEventListener('click', () => {
+        const newAmount = formatAmount(addCostInput.value);
+        let newName = addNameInput.value;
+        if (newAmount <= 0) {
+            alert("Item Cost Must Be Positive!")
+            addCostInput.classList.add('failure-border');
+            addCostInput.focus();
+            return;
+        }
+        if (billItem.splitBy.length === 0) {
+            alert('Select Members To Split!');
+            return;
+        }
+        while (!checkUniqueName(bill.items, newName)) {
+            newName += '~';
+        }
+        addBillItem(bill, newName, newAmount, billItem.splitBy);
+        setTimeout(() => {
+            location.assign(`./view-bill.html?groupName=${groupName}&billId=${billId}`);
+        }, 300);
+    });
+
+    cancelItemButton.addEventListener('click', () => {
+        billOptInfoBg.classList.add('hidden');
+    });
 });
 
 backButtonElement.addEventListener('click', () => {
