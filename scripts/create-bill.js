@@ -47,7 +47,7 @@ function generateBillItemHTML() {
             <div class="bill-item-card js-bill-item-card">
                 <p>${billItem.name}</p>
                 <p>₹ ${formatAmount(billItem.cost)}</p>
-                <button class="plain-button delete-bill-item-button js-delete-bill-item-button" data-item-name="${billItem.name}">
+                <button class="plain-button gray delete-bill-item-button js-delete-bill-item-button" data-item-name="${billItem.name}">
                     <i class='bx bxs-x'></i> 
                 </button>
             </div>
