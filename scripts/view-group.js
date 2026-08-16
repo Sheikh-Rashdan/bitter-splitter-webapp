@@ -45,16 +45,31 @@ function generateBillHTML() {
 
 function generateManageMembersHTML() {
     let generatedHTML = `<span>${group.name} Members</span>`;
+
+    generatedHTML += '<div class="group-member-card-container">';
     group.members.forEach((memberName) => {
         generatedHTML += `
         <div class="group-member-card">
             ${memberName}
-            <button class="plain-button remove-group-name-button js-remove-group-name-button" data-member-name="${memberName}">
+            <button class="plain-button gray remove-group-name-button js-remove-group-name-button" data-member-name="${memberName}">
                     <i class='bx bxs-x'></i>
             </button>
         </div>`;
     });
+    generatedHTML += '</div>';
+
     groupManageMembersContainer.innerHTML = generatedHTML;
+
+    document.querySelectorAll(".js-remove-group-name-button").forEach((button) => {
+        button.addEventListener('click', () => {
+            setTimeout(() => {
+                let name = button.dataset.memberName;
+                removeGroupMember(group, name)
+                generateManageMembersHTML();
+                generateMemberNamesHTML();
+            }, 300);
+        });
+    });
 }
 
 // DOM elements
