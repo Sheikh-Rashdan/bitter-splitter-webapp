@@ -52,6 +52,12 @@
   vertical-align: middle;
 }
 
+.group-member-card-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .group-member-card {
   display: flex;
   justify-content: center;
