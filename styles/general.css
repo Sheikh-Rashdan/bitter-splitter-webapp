@@ -239,6 +239,12 @@ footer {
   }
 }
 
+.overlay-container b {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .overlay-container .smaller {
   font-style: italic;
   font-size: 0.75rem;
