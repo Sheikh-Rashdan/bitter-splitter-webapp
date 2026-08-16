@@ -51,6 +51,7 @@ const manageMembersButtonElement = document.querySelector('.js-manage-members-bu
 const newBillButtonElement = document.querySelector('.js-new-bill-button');
 const deleteGroupButtonElement = document.querySelector('.js-delete-group-button');
 const backButtonElement = document.querySelector('.js-back-button');
+const groupManageMembersBg = document.querySelector('.js-group-manage-members-bg');
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -59,6 +60,7 @@ generateBillHTML();
 
 // event listeners
 manageMembersButtonElement.addEventListener('click', () => {
+    groupManageMembersBg.classList.remove('hidden');
 });
 
 newBillButtonElement.addEventListener('click', () => {
@@ -74,6 +76,10 @@ deleteGroupButtonElement.addEventListener('click', () => {
     }, 300);
 });
 
+groupManageMembersBg.addEventListener('click', (event) => {
+    if (event.target !== event.currentTarget) return;
+    groupManageMembersBg.classList.add('hidden');
+});
 
 backButtonElement.addEventListener('click', () => {
     setTimeout(() => {
