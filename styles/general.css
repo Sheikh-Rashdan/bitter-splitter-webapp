@@ -236,3 +236,36 @@ footer {
   font-style: italic;
   font-size: 0.75rem;
 }
+
+.overlay-input-master-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
+}
+
+.overlay-input-container {
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.overlay-input-label {
+  position: absolute;
+  left: 0.5rem;
+  top: 0rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.2rem 0.4rem;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.overlay-input {
+  text-align: center;
+}

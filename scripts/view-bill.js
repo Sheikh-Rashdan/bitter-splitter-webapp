@@ -111,14 +111,14 @@ function generateBillItemHTML() {
 
             billOptInfoContainer.innerHTML += editInfoNameContainerHTML;
             billOptInfoContainer.innerHTML += `
-                <div class="edit-input-master-container">
-                    <div class="edit-input-container">
-                        <p class="edit-input-label">Edit Name:</p>
-                        <input type="text" class="edit-input js-edit-name-input">
+                <div class="overlay-input-master-container">
+                    <div class="overlay-input-container">
+                        <p class="overlay-input-label">Edit Name:</p>
+                        <input type="text" class="overlay-input js-edit-name-input">
                     </div>
-                    <div class="edit-input-container">
-                        <p class="edit-input-label">Edit Cost:</p>
-                        <input type="number" class="edit-input js-edit-cost-input">
+                    <div class="overlay-input-container">
+                        <p class="overlay-input-label">Edit Cost:</p>
+                        <input type="number" class="overlay-input js-edit-cost-input">
                     </div>
                 </div>
                 <button class="edit-info-button js-edit-info-button disabled">Modify<i class="bx bxs-edit-alt"></i></button>
