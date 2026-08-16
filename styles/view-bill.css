@@ -86,25 +86,6 @@
   vertical-align: middle;
 }
 
-.bill-opt-info-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100lvh;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255 255 255 / 0.1);
-  backdrop-filter: blur(5px);
-}
-
-.bill-opt-info-bg.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .bill-opt-info-container {
   display: flex;
   flex-direction: column;
