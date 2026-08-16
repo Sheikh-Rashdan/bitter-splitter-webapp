@@ -93,7 +93,8 @@ function generateManageMembersHTML() {
             document.querySelector(".js-add-member-button").classList.remove("disabled");
         }
     });
-    document.querySelector('.js-add-member-button').addEventListener('click', () => {
+    document.querySelector('.js-add-member-button').addEventListener('click', (event) => {
+        if (event.target.classList.contains("disabled")) return;
         addGroupMember(group, document.querySelector(".js-new-name-input").value);
         generateManageMembersHTML();
         generateMemberNamesHTML();
