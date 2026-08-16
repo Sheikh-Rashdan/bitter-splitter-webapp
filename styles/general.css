@@ -90,6 +90,27 @@ button:active {
   scale: 1.1;
 }
 
+button.disabled {
+  border-color: gray;
+  color: gray;
+  cursor: default;
+}
+
+button.disabled:hover {
+  background-color: transparent;
+  font-weight: normal;
+  letter-spacing: normal;
+  gap: 0.4rem;
+}
+
+button.disabled:hover i {
+  color: gray;
+}
+
+button.disabled:active {
+  scale: 1;
+}
+
 .plain-button {
   width: auto;
   border: none;

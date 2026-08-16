@@ -147,27 +147,6 @@
   font-weight: bold;
 }
 
-button.disabled {
-  border-color: gray;
-  color: gray;
-  cursor: default;
-}
-
-button.disabled:hover {
-  background-color: transparent;
-  font-weight: normal;
-  letter-spacing: normal;
-  gap: 0.4rem;
-}
-
-button.disabled:hover i {
-  color: gray;
-}
-
-button.disabled:active {
-  scale: 1;
-}
-
 .opted-item-container {
   max-height: 30vh;
   overflow-y: scroll;
