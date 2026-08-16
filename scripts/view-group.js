@@ -66,11 +66,13 @@ function generateManageMembersHTML() {
     }
 
     generatedHTML += `
-    <div class="overlay-input-container">
-        <p class="overlay-input-label">Enter New Name:</p>
-        <input type="text" class="overlay-input js-new-name-input">
+    <div class="overlay-input-master-container single">
+        <div class="overlay-input-container">
+            <p class="overlay-input-label">Enter New Name:</p>
+            <input type="text" class="overlay-input js-new-name-input">
+        </div>
+        <button class="js-add-member-button disabled">Add <i class='bx bxs-user-plus'></i> </button>
     </div>
-    <button class="js-add-member-button disabled">Add <i class='bx bxs-user-plus'></i> </button>
     `;
 
     groupManageMembersContainer.innerHTML = generatedHTML;
