@@ -58,12 +58,14 @@ function generateBillItemHTML() {
 
     document.querySelectorAll('.js-delete-bill-item-button').forEach((element) => {
         element.addEventListener('click', () => {
-            billItems = billItems.filter((billItem) => {
-                if (billItem.name === element.dataset.itemName) return false;
-                return true;
-            });
-            generateBillItemHTML();
-            generateBillTotalHTML();
+            setTimeout(() => {
+                billItems = billItems.filter((billItem) => {
+                    if (billItem.name === element.dataset.itemName) return false;
+                    return true;
+                });
+                generateBillItemHTML();
+                generateBillTotalHTML();
+            }, 300);
         });
     });
 
