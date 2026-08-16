@@ -15,6 +15,9 @@ function generateMemberNamesHTML() {
     group.members.forEach(memberName => {
         generatedHTML += `<div class="member-card">${memberName}</div>`;
     });
+    if (group.members.length == 0) {
+        generatedHTML = "<span class='centered-span'>No Members</span>";
+    }
     memberCardsInnerContainerElement.innerHTML = generatedHTML;
 }
 
