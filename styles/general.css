@@ -181,6 +181,13 @@ div {
   margin: 2rem;
 }
 
+.centered-span {
+  width: 100%;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+}
+
 footer {
   width: 100%;
   bottom: 0;
