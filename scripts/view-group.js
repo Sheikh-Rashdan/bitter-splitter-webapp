@@ -43,6 +43,14 @@ function generateBillHTML() {
     });
 }
 
+function generateManageMembersHTML() {
+    let generatedHTML = '<span>Group Members</span>';
+    group.members.forEach((memberName) => {
+        generatedHTML += `<span>${memberName}</span>`;
+    });
+    groupManageMembersContainer.innerHTML = generatedHTML;
+}
+
 // DOM elements
 const groupNameElement = document.querySelector('.js-group-name');
 const memberCardsInnerContainerElement = document.querySelector('.js-member-cards-inner-container');
@@ -52,6 +60,7 @@ const newBillButtonElement = document.querySelector('.js-new-bill-button');
 const deleteGroupButtonElement = document.querySelector('.js-delete-group-button');
 const backButtonElement = document.querySelector('.js-back-button');
 const groupManageMembersBg = document.querySelector('.js-group-manage-members-bg');
+const groupManageMembersContainer = document.querySelector('.js-group-manage-members-container');
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -61,6 +70,7 @@ generateBillHTML();
 // event listeners
 manageMembersButtonElement.addEventListener('click', () => {
     groupManageMembersBg.classList.remove('hidden');
+    generateManageMembersHTML();
 });
 
 newBillButtonElement.addEventListener('click', () => {
