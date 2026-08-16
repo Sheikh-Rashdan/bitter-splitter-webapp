@@ -103,6 +103,10 @@ button:active {
   letter-spacing: normal;
 }
 
+.gray {
+  color: gray;
+}
+
 /* input */
 input[type='text'],
 input[type='number'] {
