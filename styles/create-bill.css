@@ -21,6 +21,7 @@
   border: 2px solid white;
   border-radius: 10px;
   padding: 0.625rem;
+  overflow: hidden;
 }
 
 .member-card-selected {
