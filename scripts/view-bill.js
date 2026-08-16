@@ -278,14 +278,14 @@ addItemButtonElement.addEventListener('click', () => {
 
     billOptInfoContainer.innerHTML += editInfoNameContainerHTML;
     billOptInfoContainer.innerHTML += `
-        <div class="edit-input-master-container">
-            <div class="edit-input-container">
-                <p class="edit-input-label">Enter Name:</p>
-                <input type="text" class="edit-input js-add-name-input">
+        <div class="overlay-input-master-container">
+            <div class="overlay-input-container">
+                <p class="overlay-input-label">Enter Name:</p>
+                <input type="text" class="overlay-input js-add-name-input">
             </div>
-            <div class="edit-input-container">
-                <p class="edit-input-label">Enter Cost:</p>
-                <input type="number" class="edit-input js-add-cost-input">
+            <div class="overlay-input-container">
+                <p class="overlay-input-label">Enter Cost:</p>
+                <input type="number" class="overlay-input js-add-cost-input">
             </div>
         </div>
         <button class="add-item-button js-create-item-button disabled">Add<i class="bx bxs-check-circle"></i></button>
