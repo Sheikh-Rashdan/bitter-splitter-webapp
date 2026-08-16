@@ -271,7 +271,7 @@ addItemButtonElement.addEventListener('click', () => {
     `;
 
     let editInfoNameContainerHTML = `<div class="edit-opt-container">`;
-    group.members.forEach((member) => {
+    allMembers.forEach((member) => {
         editInfoNameContainerHTML += `<div class="edit-opt js-add-opt" data-member-name="${member}">${member}</div>`;
     });
     editInfoNameContainerHTML += `</div>`;
