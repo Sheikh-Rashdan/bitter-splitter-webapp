@@ -31,7 +31,7 @@ body::selection {
 }
 
 i {
-  color: inherit;
+  color: currentColor;
 }
 
 a {
@@ -83,7 +83,7 @@ button:hover {
 }
 
 button:hover i {
-  color: black;
+  color: currentColor;
 }
 
 button:active {
