@@ -14,17 +14,26 @@ if (!bill) {
 }
 
 // functions
+const allMembers = new Set();
+const splitMembers = new Set();
 const splitAmounts = [];
 const optedItems = {};
 function generateMemberHTML() {
     let generatedHTML = '';
 
-    group.members.forEach((memberName) => {
-        splitAmounts.push({
-            memberName,
-            amount: 0
+    bill.items.forEach(billItem => {
+        billItem.splitBy.forEach(memberName => {
+            if (!splitMembers.has(memberName)) {
+                splitMembers.add(memberName);
+                splitAmounts.push({
+                    memberName,
+                    amount: 0
+                });
+            }
         });
     });
+    splitMembers.forEach(name => allMembers.add(name));
+    group.members.forEach(name => allMembers.add(name));
 
     bill.items.forEach((billItem) => {
         for (let i = 0; i < splitAmounts.length; i++) {
@@ -104,7 +113,7 @@ function generateBillItemHTML() {
             `;
 
             let editInfoNameContainerHTML = `<div class="edit-opt-container">`;
-            group.members.forEach((member) => {
+            allMembers.forEach((member) => {
                 editInfoNameContainerHTML += `<div class="edit-opt js-edit-opt" data-member-name="${member}">${member}</div>`;
             });
             editInfoNameContainerHTML += `</div>`;
