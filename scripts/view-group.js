@@ -47,7 +47,7 @@ function generateBillHTML() {
 }
 
 function generateManageMembersHTML() {
-    let generatedHTML = `<span>${group.name} Members</span>`;
+    let generatedHTML = `<b>${group.name} Members</b>`;
 
     if (group.members.length !== 0) {
         generatedHTML += '<div class="group-member-card-container">';
