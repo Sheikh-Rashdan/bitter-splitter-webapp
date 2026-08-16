@@ -86,7 +86,7 @@
   vertical-align: middle;
 }
 
-.bill-opt-info-container {
+.overlay-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,7 +109,7 @@
   }
 }
 
-.bill-opt-info-container .smaller {
+.overlay-container .smaller {
   font-style: italic;
   font-size: 0.75rem;
 }
