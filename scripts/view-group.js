@@ -46,17 +46,29 @@ function generateBillHTML() {
 function generateManageMembersHTML() {
     let generatedHTML = `<span>${group.name} Members</span>`;
 
-    generatedHTML += '<div class="group-member-card-container">';
-    group.members.forEach((memberName) => {
-        generatedHTML += `
+    if (group.members.length !== 0) {
+        generatedHTML += '<div class="group-member-card-container">';
+        group.members.forEach((memberName) => {
+            generatedHTML += `
         <div class="group-member-card">
-            ${memberName}
+            <p>${memberName}</p>
             <button class="plain-button gray remove-group-name-button js-remove-group-name-button" data-member-name="${memberName}">
                     <i class='bx bxs-x'></i>
             </button>
         </div>`;
-    });
-    generatedHTML += '</div>';
+        });
+        generatedHTML += '</div>';
+    } else {
+        generatedHTML += "<span>No Members</span>";
+    }
+
+    generatedHTML += `
+    <div class="overlay-input-container">
+        <p class="overlay-input-label">Enter New Name:</p>
+        <input type="text" class="overlay-input js-new-name-input">
+    </div>
+    <button class="js-add-member-button disabled">Add <i class='bx bxs-user-plus'></i> </button>
+    `;
 
     groupManageMembersContainer.innerHTML = generatedHTML;
 
@@ -69,6 +81,19 @@ function generateManageMembersHTML() {
                 generateMemberNamesHTML();
             }, 300);
         });
+    });
+    document.querySelector('.js-new-name-input').addEventListener('input', (event) => {
+        let newName = event.target.value.trim();
+        if (newName === "" || group.members.includes(newName)) {
+            document.querySelector(".js-add-member-button").classList.add("disabled");
+        } else {
+            document.querySelector(".js-add-member-button").classList.remove("disabled");
+        }
+    });
+    document.querySelector('.js-add-member-button').addEventListener('click', () => {
+        addGroupMember(group, document.querySelector(".js-new-name-input").value);
+        generateManageMembersHTML();
+        generateMemberNamesHTML();
     });
 }
 
