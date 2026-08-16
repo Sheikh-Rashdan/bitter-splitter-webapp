@@ -101,6 +101,16 @@ export function editBillItem(bill, billItem, newAmount, newName) {
     saveGroups();
 }
 
+export function addGroupMember(group, memberName) {
+    for (let i = 0; i < group.members.length; i++) {
+        if (group.members[i] === memberName) {
+            return;
+        }
+    }
+    group.members.push(memberName);
+    saveGroups();
+}
+
 export function toggleIncludeMember(billItem, memberName) {
     if (billItem.splitBy.includes(memberName)) {
         billItem.splitBy.splice(billItem.splitBy.indexOf(memberName), 1);
