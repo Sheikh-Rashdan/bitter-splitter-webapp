@@ -94,11 +94,12 @@
   gap: 0.4rem;
   padding: 0.5rem 0;
   overflow-y: scroll;
+  overflow-x: hidden;
   mask-image: linear-gradient(to bottom, transparent, white 10%, white 90%, transparent);
 }
 
 .edit-opt {
-  width: 100%;
+  min-width: 0;
   border: 2px solid white;
   border-radius: 10px;
   font-size: 1rem;
@@ -106,6 +107,8 @@
   transition: 300ms ease;
   cursor: pointer;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .edit-opt.selected {
