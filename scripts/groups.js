@@ -111,6 +111,13 @@ export function addGroupMember(group, memberName) {
     saveGroups();
 }
 
+export function removeGroupMember(group, memberName) {
+    let deleteIndex = group.members.indexOf(memberName);
+    if (deleteIndex == -1) return;
+    group.members.splice(deleteIndex, 1);
+    saveGroups();
+}
+
 export function toggleIncludeMember(billItem, memberName) {
     if (billItem.splitBy.includes(memberName)) {
         billItem.splitBy.splice(billItem.splitBy.indexOf(memberName), 1);
