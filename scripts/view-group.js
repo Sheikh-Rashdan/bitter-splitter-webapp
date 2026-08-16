@@ -1,4 +1,4 @@
-import { getGroupbyName, removeGroup } from "../scripts/groups.js";
+import { addGroupMember, getGroupbyName, removeGroup, removeGroupMember } from "../scripts/groups.js";
 import { formatAmount } from "../scripts/utils.js";
 
 // data
@@ -47,6 +47,7 @@ function generateBillHTML() {
 const groupNameElement = document.querySelector('.js-group-name');
 const memberCardsInnerContainerElement = document.querySelector('.js-member-cards-inner-container');
 const billCardsContainerElement = document.querySelector('.js-bill-cards-container');
+const manageMembersButtonElement = document.querySelector('.js-manage-members-button');
 const newBillButtonElement = document.querySelector('.js-new-bill-button');
 const deleteGroupButtonElement = document.querySelector('.js-delete-group-button');
 const backButtonElement = document.querySelector('.js-back-button');
@@ -57,6 +58,9 @@ generateMemberNamesHTML();
 generateBillHTML();
 
 // event listeners
+manageMembersButtonElement.addEventListener('click', () => {
+});
+
 newBillButtonElement.addEventListener('click', () => {
     setTimeout(() => {
         location.assign(`./create-bill.html?groupName=${groupName}`);
