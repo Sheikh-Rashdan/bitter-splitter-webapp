@@ -20,6 +20,7 @@
   border-left: 2px solid white;
   padding: 0 1rem 0;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .bill-cards-container {
@@ -73,6 +74,7 @@
   margin: -0.2rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .group-member-card i {
