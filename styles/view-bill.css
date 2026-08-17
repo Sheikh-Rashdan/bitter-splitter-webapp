@@ -107,6 +107,7 @@
   transition: 300ms ease;
   cursor: pointer;
   text-align: center;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 2.7rem;
