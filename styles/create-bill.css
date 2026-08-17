@@ -16,6 +16,7 @@
 
 .member-card {
   min-width: 0;
+  height: 2.8rem;
   border: 2px solid white;
   border-radius: 10px;
   padding: 0.625rem;
