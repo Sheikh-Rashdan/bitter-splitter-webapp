@@ -21,6 +21,7 @@
   padding: 0.625rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .member-card-selected {
