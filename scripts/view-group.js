@@ -120,10 +120,10 @@ generateMemberNamesHTML();
 generateBillHTML();
 
 // event listeners
-manageMembersButtonElement.addEventListener('click', () => {
+manageMembersButtonElement.addEventListener('click', () => setTimeout(() => {
     groupManageMembersBg.classList.remove('hidden');
     generateManageMembersHTML();
-});
+}, 300));
 
 newBillButtonElement.addEventListener('click', () => {
     setTimeout(() => {

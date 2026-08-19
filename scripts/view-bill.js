@@ -263,7 +263,7 @@ deleteBillButtonElement.addEventListener('click', () => {
     }, 300);
 });
 
-addItemButtonElement.addEventListener('click', () => {
+addItemButtonElement.addEventListener('click', () => setTimeout(() => {
     billOptInfoBg.classList.remove('hidden');
 
     billOptInfoContainer.innerHTML = `
@@ -358,7 +358,7 @@ addItemButtonElement.addEventListener('click', () => {
     cancelItemButton.addEventListener('click', () => {
         billOptInfoBg.classList.add('hidden');
     });
-});
+}, 300));
 
 backButtonElement.addEventListener('click', () => {
     setTimeout(() => {
