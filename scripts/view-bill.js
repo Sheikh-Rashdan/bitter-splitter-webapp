@@ -32,8 +32,8 @@ function generateMemberHTML() {
             }
         });
     });
-    splitMembers.forEach(name => allMembers.add(name));
     group.members.forEach(name => allMembers.add(name));
+    splitMembers.forEach(name => allMembers.add(name));
 
     bill.items.forEach((billItem) => {
         for (let i = 0; i < splitAmounts.length; i++) {
