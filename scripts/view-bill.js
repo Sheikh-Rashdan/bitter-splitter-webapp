@@ -379,14 +379,14 @@ shareButtonElement.addEventListener('click', () => {
     let textToCopy = 'BitterSplitter Bill\n';
     textToCopy += `${bill.date}\n`;
     textToCopy += '----------------------------------\n';
-    textToCopy += '*Summary*\n';
+    textToCopy += `*Summary - ₹ ${formatAmount(bill.total)}*\n`;
     splitAmounts.forEach((splitAmount) => {
         textToCopy += `• ${splitAmount.memberName}: ₹ ${formatAmount(splitAmount.amount)}\n`;
     });
     textToCopy += '----------------------------------\n';
     textToCopy += '*Items*\n';
     bill.items.forEach((billItem) => {
-        textToCopy += `• ${billItem.name} - ₹ ${formatAmount(billItem.cost)}\n`;
+        textToCopy += `• ${billItem.name} - ₹ ${formatAmount(billItem.cost)} (${billItem.splitBy.length})\n`;
     });
     textToCopy += '----------------------------------\n';
     textToCopy += '*People*\n';
@@ -405,7 +405,7 @@ shareButtonElement.addEventListener('click', () => {
     navigator.clipboard.writeText(textToCopy);
 
     let previousHTML = shareButtonElement.innerHTML;
-    shareButtonElement.innerText = 'Copied To Clipboard!';
+    shareButtonElement.innerText = 'Copied!';
     setTimeout(() => {
         shareButtonElement.innerHTML = previousHTML;
     }, 1000);
