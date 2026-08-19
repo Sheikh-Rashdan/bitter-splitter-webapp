@@ -23,6 +23,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: 300ms ease;
+  cursor: pointer;
+  text-align: center;
 }
 
 .member-card-selected {
