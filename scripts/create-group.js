@@ -57,7 +57,7 @@ function isAlphaNumeric(string) {
 // DOM elements
 const groupNameInputElement = document.querySelector('.js-group-name-input');
 const groupSpinboxNumberElement = document.querySelector('.js-group-spinbox-number');
-const groupSpinboxDecrementtButtonElement = document.querySelector('.js-group-spinbox-decrement')
+const groupSpinboxDecrementButtonElement = document.querySelector('.js-group-spinbox-decrement')
 const groupSpinboxIncrementButtonElement = document.querySelector('.js-group-spinbox-increment')
 const groupSpinboxContentElement = document.querySelector('.js-spinbox-content')
 const memberInputContainerElement = document.querySelector('.js-member-input-container');
@@ -69,7 +69,7 @@ groupNameInputElement.addEventListener('input', () => {
     groupNameInputElement.classList.remove('failure-border');
 });
 
-groupSpinboxDecrementtButtonElement.addEventListener('click', () => {
+groupSpinboxDecrementButtonElement.addEventListener('click', () => {
     numberOfPeople--;
     updateGroupSpinbox();
     generateMemberInputHTML();
