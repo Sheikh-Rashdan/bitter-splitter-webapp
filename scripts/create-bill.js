@@ -10,6 +10,7 @@ let currentItem = {
     cost: 0,
     splitBy: []
 }
+let numberOfItems = 1;
 
 function generateMemberHTML() {
     let generatedHTML = '';
@@ -77,6 +78,18 @@ function generateBillTotalHTML() {
     billTotal.innerHTML = `Bill - ₹${formatAmount(total)}`;
 }
 
+let itemSpinboxContentClassTimeout;
+function updateItemSpinbox() {
+    numberOfItems = Math.max(1, numberOfItems);
+    itemSpinboxNumberElement.innerHTML = numberOfItems;
+
+    itemSpinboxContentElement.classList.add('spinbox-content-animate');
+    clearTimeout(itemSpinboxContentClassTimeout);
+    itemSpinboxContentClassTimeout = setTimeout(() => {
+        itemSpinboxContentElement.classList.remove('spinbox-content-animate');
+    }, 200);
+}
+
 // DOM elements
 const groupNameElement = document.querySelector('.js-group-name');
 const billItemCardContainerElement = document.querySelector('.js-bill-item-card-container');
@@ -89,6 +102,10 @@ const backButtonElement = document.querySelector('.js-back-button');
 const billTaxCheckbox = document.querySelector('.js-bill-tax-checkbox');
 const billTaxLabel = document.querySelector('.js-bill-tax-label');
 const billTotal = document.querySelector('.js-bill-total');
+const itemSpinboxNumberElement = document.querySelector('.js-item-spinbox-number');
+const itemSpinboxDecrementButtonElement = document.querySelector('.js-item-spinbox-decrement')
+const itemSpinboxIncrementButtonElement = document.querySelector('.js-item-spinbox-increment')
+const itemSpinboxContentElement = document.querySelector('.js-spinbox-content')
 
 // HTML
 groupNameElement.innerHTML = groupName;
@@ -106,7 +123,7 @@ submitAddItemButtonElement.addEventListener('click', () => {
         itemCostInputElement.focus();
         return;
     }
-    currentItem.cost = Math.round(Number(itemCostInputElement.value) * 100) / 100;
+    currentItem.cost = Math.round(Number(itemCostInputElement.value * numberOfItems) * 100) / 100;
 
     if (currentItem.cost <= 0) {
         alert('Item Cost Must Be Positive!');
@@ -159,4 +176,14 @@ backButtonElement.addEventListener('click', () => {
 
 billTaxLabel.addEventListener('click', () => {
     billTaxCheckbox.checked = !billTaxCheckbox.checked;
+});
+
+itemSpinboxDecrementButtonElement.addEventListener('click', () => {
+    numberOfItems--;
+    updateItemSpinbox();
+});
+
+itemSpinboxIncrementButtonElement.addEventListener('click', () => {
+    numberOfItems++;
+    updateItemSpinbox();
 });
