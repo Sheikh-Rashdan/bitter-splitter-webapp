@@ -156,6 +156,10 @@ div {
   user-select: none;
 }
 
+.info-label {
+  font-weight: 500;
+}
+
 .divider-container {
   border: 2px solid white;
   border-radius: 20px;
