@@ -12,6 +12,11 @@
   }
 }
 
+.spinbox-container .fix-icon-padding {
+  margin-left: 0.5rem;
+  margin-right: -0.15rem;
+}
+
 .member-card-container {
   width: 100%;
   display: grid;
