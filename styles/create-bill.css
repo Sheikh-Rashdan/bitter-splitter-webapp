@@ -4,6 +4,14 @@
 }
 
 /* div */
+.column-container {
+  max-height: 70vh;
+
+  @media screen and (min-width: 768px) {
+    max-height: 85vh;
+  }
+}
+
 .member-card-container {
   width: 100%;
   display: grid;

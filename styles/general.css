@@ -177,7 +177,7 @@ div {
   padding: 1rem;
   margin: 2rem;
   gap: 1rem;
-  max-height: 60vh;
+  max-height: 55vh;
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
